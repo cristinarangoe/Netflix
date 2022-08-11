@@ -4,8 +4,11 @@ import './App.css'
 import useContentful from './services/getContentful'
 import { useEffect } from 'react'
 import MediaItem from './components/MediaItem'
+import Inicio from './components/Inicio'
 
 function App() {
+
+
   const [count, setCount] = useState(0)
   const [movies, setMovies] = useState({});
   const [series, setSeries] = useState({});
@@ -21,34 +24,7 @@ function App() {
   },[])
 
   return (
-    <div className="App">
-      <MediaItem media={movies[0]}/>
-      <MediaItem media = {series[0]}/>
-      sasas
-        <h1 class="text-3xl font-bold underline text-green-900">
-          Hello world!
-        </h1>
-      <div>
-        <a href="https://vitejs.dev" target="_blank">
-          <img src="/vite.svg" className="logo" alt="Vite logo" />
-        </a>
-        <a href="https://reactjs.org" target="_blank">
-          <img src={reactLogo} className="logo react" alt="React logo" />
-        </a>
-      </div>
-      <h1>Vite + React</h1>
-      <div className="card">
-        <button onClick={() => setCount((count) => count + 1)}>
-          count is {count}
-        </button>
-        <p>
-          Edit <code>src/App.jsx</code> and save to test HMR
-        </p>
-      </div>
-      <p className="read-the-docs">
-        Click on the Vite and React logos to learn more
-      </p>
-    </div>
+    <Inicio/>
   )
 }
 
