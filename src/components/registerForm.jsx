@@ -1,15 +1,18 @@
 import { useForm } from "react-hook-form";
+import { useNavigate } from "react-router-dom";
 
 export default function RegisterForm() {
   const { register, handleSubmit } = useForm();
-  const onSubmit = (data) => alert(data.email);
+  const navigate = useNavigate();
+  const onSubmit = (data) =>
+    navigate(`/signupemail/${data.email}`);
 
   return (
     <form
       onSubmit={handleSubmit(onSubmit)}
       className="flex flex-col justify-center items-center"
     >
-      <h3 className="text-lg px-[36px] max-w-[450px]">
+      <h3 className="md:text-2xl px-[36px]">
         ¿Quieres ver Netflix ya? Ingresa tu email para crear una cuenta o
         reiniciar tu membresía de Netflix.
       </h3>
