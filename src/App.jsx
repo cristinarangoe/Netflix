@@ -7,14 +7,16 @@ import MediaItem from './components/MediaItem'
 
 function App() {
   const [count, setCount] = useState(0)
-  const [movies, setMovies] = useState({});
-  const [series, setSeries] = useState({});
+  const [movies, setMovies] = useState();
+  const [series, setSeries] = useState();
+
 
   useEffect(()=>{
     const getMovies = async () =>{
       const data = await useContentful.getData()
       setMovies(data.movies);
       setSeries(data.series);
+
     } 
     getMovies()
     
@@ -22,9 +24,8 @@ function App() {
 
   return (
     <div className="App">
-      <MediaItem media={movies[0]}/>
-      <MediaItem media = {series[0]}/>
-      sasas
+      {movies && 
+      <MediaItem media={movies[0]}/>}
         <h1 class="text-3xl font-bold underline text-green-900">
           Hello world!
         </h1>
