@@ -1,0 +1,15 @@
+body{
+    background-color: rgb(20, 20, 20);
+}
+
+img {
+    transition: transform .2s;
+    width: 30%;
+    overflow: hidden;
+    border-radius: 2%;
+
+}
+img:hover {
+   
+    transform: scale(1.5);
+}
