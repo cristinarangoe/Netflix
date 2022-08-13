@@ -9,9 +9,11 @@ export default function SignIn() {
   const onSubmit = (data) => alert(data);
 
   return (
-    <div className=" bg-black md:bg-[url('/img/ImgInicio.jpg')] md:bg-cover w-full h-full">
+    <div className=" bg-black md:bg-[url('/img/ImgInicio.jpg')] bg-cover w-full h-full flex flex-col ">
+      <div className="pt-3">
       <Link to="/"><NavBarLogo className="mx-[20px]"/></Link>
-      <main className="flex flex-col justify-center max-w-[640px] py-[50px] md:bg-black/80 mx-auto ">
+      </div>
+      <main className="flex flex-col justify-center max-w-[640px] py-[50px]  md:bg-black/80 mx-auto mb-auto">
         <div className="px-0 mx-5 md:px-10">
               <div className="">
                 <h1 className="text-white text-3xl font-bold">Inicia Sesión</h1>
@@ -92,7 +94,7 @@ export default function SignIn() {
             </div>
         </div>
       </main>
-      <Footer estilo="bg-black/80"/>
+      <Footer estilo="bg-black/80" estiloSm={"bg-black"}/>
     </div>
   );
 }

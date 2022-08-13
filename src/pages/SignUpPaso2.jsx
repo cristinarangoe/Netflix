@@ -10,11 +10,11 @@ export default function SignUpPaso2() {
   const { email } = useParams();
 
   return (
-    <div>
+    <div className="flex flex-col h-full">
       <div className="border-b-2 border-gray-200">
         <InicioNav />
       </div>
-      <div className="flex flex-col justify-center max-w-[640px] py-[50px] mx-5 md:mx-auto">
+      <div className="flex flex-col justify-center max-w-[640px] py-3 mx-5 md:mx-auto my-3 mb-auto ">
         <form
           onSubmit={handleSubmit(onSubmit)}
           className="flex flex-col justify-center items-center"
