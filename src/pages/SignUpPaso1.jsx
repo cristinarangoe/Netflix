@@ -1,16 +1,19 @@
 import React from 'react'
 import Footer from '../components/Footer'
 import InicioNav from '../components/inicioNav'
-import { Link } from "react-router-dom";
+import { Link, useParams } from "react-router-dom";
 
 
 export default function SignUpPaso1() {
+
+    const { email } = useParams();
+
   return (
-    <div>
-        <div className="border-b-2 border-gray-200">
+    <div className="flex flex-col h-screen">
+        <div className="border-b-2 border-gray-200 pb-5">
             <InicioNav/>
         </div>
-        <main className='flex flex-col justify-center max-w-[640px] py-[50px] mx-5 md:mx-auto'>
+        <main className='flex flex-col justify-center max-w-[640px] py-[50px] mx-5 md:mx-auto my-5 mb-auto'>
             <div className='text-center text-black text-2xl font-bold'>
                 <h3>Hola!</h3>
                 <h3>Suscribirse a Netflix es muy fácil.</h3>
@@ -57,7 +60,7 @@ export default function SignUpPaso1() {
             </div>
             <div>
                 <h3 className='text-center text-black text-lg font-bold'>- o -</h3>
-                <Link to="signupemail" className="min-h-[48px] px-[1em] py-[0.25em] rounded-[2px] bg-red-600 mt-[0.5em] text-center flex flex-row items-center text-white w-full hover:text-white">
+                <Link to={`/signupemail/${email}`} className="min-h-[48px] px-[1em] py-[0.25em] rounded-[2px] bg-red-600 mt-[0.5em] text-center flex flex-row items-center text-white w-full hover:text-white">
                     <span>
                         <svg
                             xmlns="http://www.w3.org/2000/svg"
@@ -78,7 +81,7 @@ export default function SignUpPaso1() {
                 </Link>
             </div>
         </main>
-        <Footer estilo="bg-white"/>
+        <Footer estilo="bg-white" />
     </div>
   )
 }

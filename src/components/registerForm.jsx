@@ -5,7 +5,7 @@ export default function RegisterForm() {
   const { register, handleSubmit } = useForm();
   const navigate = useNavigate();
   const onSubmit = (data) =>
-    navigate(`/signupemail/${data.email}`);
+    navigate(`/signup/${data.email}`);
 
   return (
     <form
