@@ -1,5 +1,7 @@
 body{
-    background-color: rgb(20, 20, 20);
+    background-color: white; 
+    margin:0;
+    /* rgb(20, 20, 20) */
 }
 
 img {
@@ -11,5 +13,10 @@ img {
 }
 img:hover {
    
-    transform: scale(1.5);
+    transform: scale(1.2);
+}
+
+.features{
+    width: 500px;
+    position: relative;
 }

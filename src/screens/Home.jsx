@@ -1,10 +1,10 @@
 import { useState } from 'react'
 import reactLogo from '../assets/react.svg'
-import '../App.css'
 import useContentful from '../services/getContentful'
 import { useEffect } from 'react'
 import MediaItem from '../components/MediaItem'
 import style from './Home.css'
+import HomeNavBar from '../components/homeNavBar'
 
 function Home() {
   const [count, setCount] = useState(0)
@@ -22,31 +22,13 @@ function Home() {
   },[])
 
   return (
-    <div className="App">
-      {movies &&  <MediaItem media={movies[0]}/>}
-        <h1 class="text-3xl font-bold underline text-green-900">
-          Hello world!
-        </h1>
-      <div>
-        <a href="https://vitejs.dev" target="_blank">
-          <img src="/vite.svg" className="logo" alt="Vite logo" />
-        </a>
-        <a href="https://reactjs.org" target="_blank">
-          <img src={reactLogo} className="logo react" alt="React logo" />
-        </a>
-      </div>
-      <h1>Vite + React</h1>
-      <div className="card">
-        <button onClick={() => setCount((count) => count + 1)}>
-          count is {count}
-        </button>
-        <p>
-          Edit <code>src/App.jsx</code> and save to test HMR
-        </p>
-      </div>
-      <p className="read-the-docs">
-        Click on the Vite and React logos to learn more
-      </p>
+    <div className="home">
+    <HomeNavBar/>
+    <img className='featured'
+            src="https://images.pexels.com/photos/6899260/pexels-photo-6899260.jpeg?auto=compress&cs=tinysrgb&dpr=2&w=500"
+            alt=""
+          />
+      
     </div>
   )
 }
