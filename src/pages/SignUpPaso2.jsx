@@ -3,11 +3,32 @@ import { useForm } from "react-hook-form";
 import Footer from "../components/Footer";
 import InicioNav from "../components/inicioNav";
 import { useParams } from "react-router-dom";
+import UserPool from "../services/UserPool";
 
 export default function SignUpPaso2() {
   const { register, handleSubmit } = useForm();
-  const onSubmit = (data) => alert(data.email);
   const { email } = useParams();
+  const navigate = useNavigate();
+  const onSubmit = (data) => {
+    data.preventDefault();
+
+    //revirsar que las constraseñas sean iguales
+    if (data.password !== data.password2) {
+      setError("Las contraseñas no coinciden!");
+      return;
+    }
+
+    //crear usuario
+    UserPool.signUp(email, data.password, [data.nombre, data.apellido, data.telefono], null, (err, result) => {
+      if (err) {
+        console.log(err);
+        setError(err.message);
+      } else {
+        console.log(result);
+        navigate("/confirmacion");
+      }
+    })
+  };
 
   return (
     <div className="flex flex-col h-full">

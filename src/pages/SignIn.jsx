@@ -2,11 +2,51 @@ import React from "react";
 import { useForm } from "react-hook-form";
 import NavBarLogo from "../components/NavBarLogo";
 import Footer from "../components/Footer"
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
+import  {CognitoUser, AuthenticationDetails} from 'amazon-cognito-identity-js';
+import UserPool from "../services/UserPool";
+
 
 export default function SignIn() {
   const { register, handleSubmit } = useForm();
-  const onSubmit = (data) => alert(data);
+  const [email, setEmail] = React.useState("");
+  const [password, setPassword] = React.useState("");
+  const [Error, setError] = React.useState("");
+  
+  
+  const navigate = useNavigate();
+
+
+  const onSubmit = (data) => {
+    data.preventDefault();
+
+    const user = new CognitoUser({
+      Username: email,
+      Pool: UserPool
+    })
+
+    const authenticationData = new AuthenticationDetails({
+      username: email,
+      password: password
+    })
+
+    user.authenticateUser(authenticationData, {
+      onSuccess: (result) => {
+        console.log(result)
+        navigate("/")
+      },
+      onFailure: (err) => {
+        console.log(err)
+        setError(err.message)
+      },
+      newPasswordRequired: (userAttributes, requiredAttributes) => {
+        console.log(userAttributes, requiredAttributes)
+        setError("Por favor cambia tu contraseña")
+      }
+    })
+  }
+      
+
 
   return (
     <div className=" bg-black md:bg-[url('/img/ImgInicio.jpg')] bg-cover w-full h-full flex flex-col ">
@@ -18,20 +58,26 @@ export default function SignIn() {
               <div className="">
                 <h1 className="text-white text-3xl font-bold">Inicia Sesión</h1>
                 <form
-                  onSubmit={handleSubmit(onSubmit)}
+                  onSubmit={onSubmit}
                   className=""
                 >
                   <input
+                    type="email"
+                    value = {email}
+                    onChange={(e) => setEmail(e.target.value)}
                     placeholder="Email o número de teléfono"
                     {...register("email_numero", { required: true })}
                     className="w-full p-[10px] h-[48px] my-[10px] bg-gray-300 placeholder:text-gray-800"
                   />
                   <input
+                    type="password"
+                    value = {password}
+                    onChange={(e) => setPassword(e.target.value)}
                     placeholder="Contraseña"
                     {...register("password", { required: true })}
                     className="w-full p-[10px] h-[48px] my-[10px] bg-gray-300 placeholder:text-gray-800"
                   />
-                  <button className="min-h-[48px] px-[1em] py-[0.25em] rounded-[2px] bg-red-600 mt-[0.5em] text-center flex flex-row items-center w-full text-white">
+                  <button type='submit' className="min-h-[48px] px-[1em] py-[0.25em] rounded-[2px] bg-red-600 mt-[0.5em] text-center flex flex-row items-center w-full text-white">
                     <span className="text-center">Iniciar sesión</span>
                   </button>
                 </form>
