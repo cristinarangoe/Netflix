@@ -1,42 +1,56 @@
 import { useState } from 'react'
-import reactLogo from '../assets/react.svg'
 import useContentful from '../services/getContentful'
 import { useEffect } from 'react'
-import style from './Home.css'
-import HomeNavBar from '../components/homeNavBar'
+import HomeNavBar from '../components/HomeNavBar'
 import { helpers } from '../generalHelpers/contentfulHelpers'
 import { filterHelpers } from '../generalHelpers/filterHelpers'
 import MediaDialog from '../components/MediaModal'
+import MediaItem from '../components/MediaItem';
+import Carrusel from '../components/Carrusel';
 
 function Home() {
-  const [count, setCount] = useState(0)
-  const [movies, setMovies] = useState();
-  const [series, setSeries] = useState();
-  const [genres, setGenres] = useState({})
+  const [contentfulMovies, setMovies] = useState();
+  const [contentfulSeries, setSeries] = useState();
+  const [isLoading, setLoading] = useState(true);
+  // const [genres, setGenres] = useState();
 
   useEffect(()=>{
-    const getMedia = async () =>{
-      const data = helpers.contentfulClean(await useContentful.getData())
-      setGenres(filterHelpers.filterMediaByGenres(data))
-      setMovies(data.movies);
-      setSeries(data.series);
-    } 
-    getMedia()
+    // const getMedia = async () =>{
+    //   const data = helpers.contentfulClean(await useContentful.getData())
+    //   setMovies(data.movies);
+    //   setSeries(data.series);
+    // } 
+    // getMedia()
+
+    //traer los datos y limpiandolos
+    useContentful.getData().then((data) => {
+      const {movies, series} = helpers.contentfulClean(data);
+      // setGenres(filterHelpers.filterMediaByGenres(data))
+      setMovies(movies);
+      setSeries(series);
+      setLoading(false);
+    })
     
   },[])
 
+  if(isLoading){
+    return (
+      <h1>Loading.........</h1>
+    )
+  }
   return (
-    <div className="home">
-    
-    <HomeNavBar/>
-    <img className='featured'
-            src="https://images.pexels.com/photos/6899260/pexels-photo-6899260.jpeg?auto=compress&cs=tinysrgb&dpr=2&w=500"
-            alt=""
-          />
-      <button onClick={()=>{console.log({movies, series})}}>media</button>
-      <button onClick={()=>{console.log(genres)}}>generos</button>
-      {(movies && series) && <MediaDialog media = {movies[0]}/>}
+    <div className="bg-black/90 h-screen">
+      <div className="z-10">
+      <HomeNavBar/>
+      </div>
+      <div className="z-0">
+      <Carrusel content={contentfulMovies} genre="Prueba1"/>
+    <Carrusel content={contentfulMovies} genre="Prueba2"/>
+    <Carrusel content={contentfulMovies} genre="Prueba3"/>
+      </div>
+
     </div>
+
   )
 }
 
