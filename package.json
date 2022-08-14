@@ -9,11 +9,15 @@
     "preview": "vite preview"
   },
   "dependencies": {
+    "@aws-amplify/ui-react": "^3.4.0",
     "amazon-cognito-identity-js": "^5.2.10",
+    "aws-amplify": "^4.3.30",
+    "aws-amplify-react": "^5.1.9",
     "contentful": "^9.1.34",
     "react": "^18.2.0",
     "react-dom": "^18.2.0",
     "react-hook-form": "^7.34.0",
+    "react-password-checklist": "^1.4.0",
     "react-router": "^6.3.0",
     "react-router-dom": "^6.3.0"
   },

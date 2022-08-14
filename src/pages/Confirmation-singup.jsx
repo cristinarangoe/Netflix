@@ -6,7 +6,7 @@ import { useParams } from "react-router-dom";
 import { useNavigate } from "react-router-dom";
 import {Auth} from 'aws-amplify'
 
-//const [Error, setError] = useState("");
+
 
 async function Confirm(email, code) {
   
@@ -22,16 +22,21 @@ async function Confirm(email, code) {
 export default function ConfirmationSingup() {
     const { register, handleSubmit } = useForm();
     const { email } = useParams();
+    const [Error, setError] = useState("");
     const navigate = useNavigate();
 
     const onSubmit = (data) => {
         console.log(email)
-        const result = Confirm(email, data.code);
-        if (!result) {
-            //setError("Error al confirmar usuario");
-            return;
-        }
-        navigate("/");
+        var result = 0; 
+        Confirm(email, data.code).then(res => {
+            result=res
+            if (result) {
+                setError("Error al confirmar usuario, el codigo es incorrecto");
+                return;
+            }
+            navigate("/");
+        });
+        
     };
 
 

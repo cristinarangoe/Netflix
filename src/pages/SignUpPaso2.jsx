@@ -5,14 +5,15 @@ import InicioNav from "../components/inicioNav";
 import { useParams } from "react-router-dom";
 import {Auth} from "aws-amplify";
 import {useNavigate} from "react-router-dom";
+import PasswordChecklist from "react-password-checklist"
 
-//const [Error,setError] = useState("");
+
 
 async function SingUp(email, data) {
-  console.log(data)
+  //console.log(data)
   const pass = data.password;
   try {
-    const {user} = await Auth.signUp({
+    await Auth.signUp({
       username: email, 
       password: pass,
       attributes: {
@@ -21,37 +22,51 @@ async function SingUp(email, data) {
         phone_number: data.celular,
       },
     });
-    console.log(user);
-    return 1
+    //console.log(user);
+    return await 1
   } catch (error) {
     console.log(error);
-    return 0
+    return await 0
   }
 }
 
 export default function SignUpPaso2() {
   const { register, handleSubmit } = useForm();
   const { email } = useParams();
+  const [password, setPassword] = useState("")
+	const [passwordAgain, setPasswordAgain] = useState("")
+  const [ValidPassword, setValidPassword] = useState(false)
   const navigate = useNavigate();
+  const [Error,setError] = useState("");
   const onSubmit = (data) => {
     
     console.log(data);
+    console.log(password,passwordAgain)
+    if(!ValidPassword){
+      setError("Las contraseñas no coinciden o no cumplen con los requisitos")
+      console.log("invalidas")
+      return
+    }
+    /*
     //revirsar que las constraseñas sean iguales
     if (data.password !== data.password2) {
       setError("Las contraseñas no coinciden!");
+      console.log("Las contraseñas no coinciden!")
       return;
     }
-
-    const result = SingUp(email, data);
-    if (!result) {
-      setError("Error al registrar usuario");
-      return;
-    }
-    navigate("/confirmation");
-
-    
-
-    
+    */
+    var result = 0;
+    SingUp(email, data).then(res => {
+      result=res
+      //console.log(result)
+      if (result == 0) {
+        setError("Error al registrar usuario");
+        console.log("Error al registrar usuario");
+        return;
+      }
+      navigate(`/confirmation/${email}`); 
+    });
+      
   };
 
   return (
@@ -97,14 +112,22 @@ export default function SignUpPaso2() {
             {...register("password", { required: true })}
             className="w-full p-[10px] h-[48px] my-[10px] text-black border border-gray-200"
             type="password"
+            onChange={(e) => {setPassword(e.target.value)}}
           />
           <input
             placeholder="Vuelve a repetir la contraseña"
             {...register("password2", { required: true })}
             className="w-full p-[10px] h-[48px] my-[10px] text-black border border-gray-200"
             type="password"
+            onChange={(e) => {setPasswordAgain(e.target.value)}}
           />
-
+         <PasswordChecklist
+            rules={["minLength","specialChar","number","capital","match"]}
+            minLength={8}
+            value={password}
+            valueAgain={passwordAgain}
+            onChange={(isValid) => {setValidPassword(isValid)}}
+          />
           <button className="min-h-[48px] px-[1em] py-[0.25em] rounded-[2px] bg-red-600 mt-[0.5em] text-center flex flex-row items-center text-white">
             <span className="text-[1rem]">Registrar</span>
             <span>
