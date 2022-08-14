@@ -46,7 +46,7 @@ export default function SignIn() {
               <div className="">
                 <h1 className="text-white text-3xl font-bold">Inicia Sesión</h1>
                 <form
-                  onSubmit={handleSubmit(onSubmit)}
+                  onSubmit={onSubmit}
                   className=""
                 >
                   <input
@@ -61,7 +61,7 @@ export default function SignIn() {
                     {...register("password", { required: true })}
                     className="w-full p-[10px] h-[48px] my-[10px] bg-gray-300 placeholder:text-gray-800"
                   />
-                  <button className="min-h-[48px] px-[1em] py-[0.25em] rounded-[2px] bg-red-600 mt-[0.5em] text-center flex flex-row items-center w-full text-white">
+                  <button type='submit' className="min-h-[48px] px-[1em] py-[0.25em] rounded-[2px] bg-red-600 mt-[0.5em] text-center flex flex-row items-center w-full text-white">
                     <span className="text-center">Iniciar sesión</span>
                   </button>
                 </form>
