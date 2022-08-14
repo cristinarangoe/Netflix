@@ -1,13 +1,58 @@
-import React from "react";
+import React, {useState} from "react";
 import { useForm } from "react-hook-form";
 import Footer from "../components/Footer";
 import InicioNav from "../components/inicioNav";
 import { useParams } from "react-router-dom";
+import {Auth} from "aws-amplify";
+import {useNavigate} from "react-router-dom";
+
+//const [Error,setError] = useState("");
+
+async function SingUp(email, data) {
+  console.log(data)
+  const pass = data.password;
+  try {
+    const {user} = await Auth.signUp({
+      username: email, 
+      password: pass,
+      attributes: {
+        given_name: data.name,
+        family_name: data.lastname,
+        phone_number: data.celular,
+      },
+    });
+    console.log(user);
+    return 1
+  } catch (error) {
+    console.log(error);
+    return 0
+  }
+}
 
 export default function SignUpPaso2() {
   const { register, handleSubmit } = useForm();
-  const onSubmit = (data) => alert(data.email);
   const { email } = useParams();
+  const navigate = useNavigate();
+  const onSubmit = (data) => {
+    
+    console.log(data);
+    //revirsar que las constraseñas sean iguales
+    if (data.password !== data.password2) {
+      setError("Las contraseñas no coinciden!");
+      return;
+    }
+
+    const result = SingUp(email, data);
+    if (!result) {
+      setError("Error al registrar usuario");
+      return;
+    }
+    navigate("/confirmation");
+
+    
+
+    
+  };
 
   return (
     <div className="flex flex-col h-full">
@@ -45,7 +90,7 @@ export default function SignUpPaso2() {
             placeholder="Celular"
             {...register("celular", { required: true })}
             className="w-full p-[10px] h-[48px] my-[10px] text-black border border-gray-200"
-            type="number"
+            type="tel"
           />
           <input
             placeholder="Contraseña"

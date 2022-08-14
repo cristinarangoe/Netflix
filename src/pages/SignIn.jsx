@@ -1,12 +1,40 @@
-import React from "react";
+import React, {useState} from "react";
 import { useForm } from "react-hook-form";
 import NavBarLogo from "../components/NavBarLogo";
 import Footer from "../components/Footer"
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
+import {Auth} from "aws-amplify";
+
+//const [Error, setError] = useState("");
+
+async function singIn(email, password){
+  console.log(email, password)
+  try {
+    const {user} = await Auth.signIn(email, password);
+    return 1;
+  } catch (error) {
+    console.log(error);
+    return 0;
+  }
+}
+
 
 export default function SignIn() {
   const { register, handleSubmit } = useForm();
-  const onSubmit = (data) => alert(data);
+  const navigate = useNavigate();
+
+  const onSubmit = (data) => {
+    const result = singIn(data.email, data.password); 
+    if (!result) {
+      //setError("Error al registrar usuario");
+      return;
+    }
+    navigate("/");
+  }
+
+
+  
+
 
   return (
     <div className=" bg-black md:bg-[url('/img/ImgInicio.jpg')] bg-cover w-full h-full flex flex-col ">
@@ -22,11 +50,13 @@ export default function SignIn() {
                   className=""
                 >
                   <input
-                    placeholder="Email o número de teléfono"
-                    {...register("email_numero", { required: true })}
+                    type="email"
+                    placeholder="Email"
+                    {...register("email", { required: true })}
                     className="w-full p-[10px] h-[48px] my-[10px] bg-gray-300 placeholder:text-gray-800"
                   />
                   <input
+                    type="password"
                     placeholder="Contraseña"
                     {...register("password", { required: true })}
                     className="w-full p-[10px] h-[48px] my-[10px] bg-gray-300 placeholder:text-gray-800"
