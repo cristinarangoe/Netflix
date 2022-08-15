@@ -1,15 +1,17 @@
 import React from "react";
 import MediaItem from "./MediaItem";
 import { Link } from "react-router-dom";
+import * as Dialog from '@radix-ui/react-dialog';
+import Modal from '../components/Modal'
 
 // cotent es una lista de series o peliculas
-export default function Carrusel({ content, genre }) {
+export default function Carrusel({ content, genre, id }) {
   const slideLeft = () => {
-    var slider = document.getElementById("slider");
+    var slider = document.getElementById("slider" + id);
     slider.scrollLeft = slider.scrollLeft - 500;
   };
   const slideRight = () => {
-    var slider = document.getElementById("slider");
+    var slider = document.getElementById("slider" + id);
     slider.scrollLeft = slider.scrollLeft + 500;
   };
 
@@ -40,14 +42,22 @@ export default function Carrusel({ content, genre }) {
 
         <div
           className="overflow-x-scroll whitespace-nowrap scroll-smooth scrollbar-hide relative"
-          id={"slider"}
+          id={"slider" + id}
         >
-          {content.map((e) => (
-            <Link to="/mediadetail" name={e.name} image={e.image} key={e.name}>
+          {content.map((e,key) => (
+            <Link key={key} to="/mediadetail" name={e.name} image={e.image} key={e.name}>
               <MediaItem name={e.name} image={e.image} />
             </Link>
           ))}
+        {/* {content.map((e) => (
+            <Dialog.Root >
+                <Dialog.Trigger><MediaItem name={e.name} image={e.image} /></Dialog.Trigger>
+                    <Modal/>
+            </Dialog.Root>
+          ))} */}
         </div>
+        
+        
         <button
           className="transition-all h-10 w-10 hover:h-16 hover:w-16 right-0 rounded-full absolute cursor-pointer hidden group-hover:block z-10"
           onClick={slideRight}

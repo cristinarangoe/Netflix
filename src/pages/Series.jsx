@@ -5,18 +5,20 @@ import HomeNavBar from "../components/HomeNavBar";
 import { helpers } from "../generalHelpers/contentfulHelpers";
 import { getDataByGenera } from "../utils/getDataByGenera";
 import Carrusel from "../components/carrusel";
+import Footer from "../components/carrusel";
 
-function Home() {
+export default function Series(){
+      const [isLoading, setLoading] = useState(true);
   const [content, setContent] = useState();
-  const [isLoading, setLoading] = useState(true);
+  // const [genres, setGenres] = useState();
 
   useEffect(() => {
     //traer los datos y limpiandolos
     useContentful.getData().then((data) => {
       if (data) {
-        const cleanContent = helpers.contentfulClean(data);
-        const aux = getDataByGenera(cleanContent);
-        setContent(aux);
+        const content = helpers.contentfulClean(data);
+        const tmp = getDataByGenera(content);
+        setContent(tmp);
         setLoading(false);
       }
     });
@@ -26,22 +28,21 @@ function Home() {
     return <h1>Loading.........</h1>;
   }
   return (
-    <div className="bg-black/90 h-screen">
-      <div className="relativez-10">
+    <div className="bg-black/90 ">
+      <div className="relative z-10">
         <HomeNavBar />
       </div>
       <div className="z-0">
-        {Array.from(content).map(([key, val]) => (
+        {Array.from(content).map(([key, value]) => (
           <Carrusel
             key={key}
-            content={[...val.movies, ...val.series]}
+            content={value.series}
             id="1"
             genre={key}
           />
         ))}
       </div>
+      <div><Footer/></div>
     </div>
   );
 }
-
-export default Home;

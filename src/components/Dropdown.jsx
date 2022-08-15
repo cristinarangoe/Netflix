@@ -14,7 +14,7 @@ export default function Dropdown() {
             xmlns="http://www.w3.org/2000/svg"
             className="h-7 w-7"
             viewBox="0 0 20 20"
-            fill="gray"
+            fill="white"
           >
             <path
               fillRule="evenodd"
@@ -23,10 +23,10 @@ export default function Dropdown() {
             />
           </svg>
         </DropdownMenu.Trigger>
-        <DropdownMenu.Content className="mb-3" align="start">
+        <DropdownMenu.Content className="mb-3 p-5 bg-black/90" align="start">
           <DropdownMenu.Item
             key="Home"
-            className=" border-none cursor-default focus:outline-none"
+            className=" border-none cursor-default focus:outline-none pb-3"
           >
             <Link
               to="/"
@@ -37,7 +37,7 @@ export default function Dropdown() {
           </DropdownMenu.Item>
           <DropdownMenu.Item
             key="Peliculas"
-            className=" border-none cursor-default focus:outline-none"
+            className=" border-none cursor-default focus:outline-none pb-3"
           >
             <Link
               to="/"
@@ -48,7 +48,7 @@ export default function Dropdown() {
           </DropdownMenu.Item>
           <DropdownMenu.Item
             key="Series"
-            className=" border-none cursor-default focus:outline-none mb-3"
+            className=" border-none cursor-default focus:outline-none "
           >
             <Link
               to="/"
