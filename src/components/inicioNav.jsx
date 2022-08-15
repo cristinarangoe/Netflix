@@ -9,11 +9,9 @@ export default function InicioNav() {
           <NavBarLogo />
         </Link>
         <div className="">
-          <Link to="/signin">
-            <button className="text-white bg-red-600 py-[0.25rem] px-[0.5rem] text-[0.9rem] rounded-[3px] mr-5">
+            <a className="text-white bg-red-600 py-[0.25rem] px-[0.5rem] text-[0.9rem] rounded-[3px] mr-5 text-white hover:text-white" href = "https://netflix-auth.auth.us-east-1.amazoncognito.com/oauth2/authorize?client_id=60vc4rb01ggqs6jqg6dch2brt7&response_type=code&scope=aws.cognito.signin.user.admin+email+openid+profile&redirect_uri=https%3A%2F%2Fwww.google.com">
               Iniciar sesion
-            </button>
-          </Link>
+            </a>
         </div>
       </div>
     </nav>

@@ -12,17 +12,11 @@ export default function RegisterForm() {
       className="flex flex-col justify-center items-center"
     >
       <h3 className="md:text-2xl px-[36px]">
-        ¿Quieres ver Netflix ya? Ingresa tu email para crear una cuenta o
+        ¿Quieres ver Netflix ya? Da click en el siguiente boton para crear una cuenta o
         reiniciar tu membresía de Netflix.
       </h3>
-      <input
-        placeholder="Email"
-        {...register("email", { required: true })}
-        className="w-full p-[10px] h-[48px] my-[10px] text-black"
-        type="email"
-      />
-      <button className="min-h-[48px] px-[1em] py-[0.25em] rounded-[2px] bg-red-600 mt-[0.5em] text-center flex flex-row items-center">
-        <span className="text-[1rem]">Comenzar</span>
+      <a className="min-h-[48px] px-[1em] py-[0.25em] rounded-[2px] bg-red-600 mt-[0.5em] text-center flex flex-row items-center text-white hover:text-white" href="https://netflix-auth.auth.us-east-1.amazoncognito.com/signup?client_id=60vc4rb01ggqs6jqg6dch2brt7&response_type=code&scope=aws.cognito.signin.user.admin+email+openid+profile&redirect_uri=https%3A%2F%2Fwww.google.com">
+        <span className="text-[1rem]">Registrarse</span>
         <span>
           <svg
             xmlns="http://www.w3.org/2000/svg"
@@ -39,7 +33,7 @@ export default function RegisterForm() {
             />
           </svg>
         </span>
-      </button>
+      </a>
     </form>
   );
 }

@@ -34,6 +34,14 @@ export default function () {
                 Peliculas
               </Link>
             </li>
+            <li className="pr-5 absolute right-0" key="movies">
+              <a
+                href="https://netflix-auth.auth.us-east-1.amazoncognito.com/logout?client_id=60vc4rb01ggqs6jqg6dch2brt7&response_type=code&scope=aws.cognito.signin.user.admin+email+openid+profile&redirect_uri=https%3A%2F%2Fwww.facebook.com"
+                className="text-gray-300 text-xl font-medium hover:text-white mr-3"
+              >
+                Cerrar sesión
+              </a>
+            </li>
           </ul>
         </div>
         <div className="ml-5 inline sm:inline md:hidden">

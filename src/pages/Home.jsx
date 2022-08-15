@@ -55,7 +55,7 @@ function Home() {
   }
   return (
     <div className="bg-black/90 ">
-      <div className="relativez-10">
+      <div className="relative z-10">
         <HomeNavBar />
       </div>
       <div className="z-0 my-3">

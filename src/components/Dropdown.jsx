@@ -57,6 +57,17 @@ export default function Dropdown() {
               Series
             </Link>
           </DropdownMenu.Item>
+          <DropdownMenu.Item
+            key="Series"
+            className=" border-none cursor-default focus:outline-none "
+          >
+            <a
+              className="text-gray-300 text-xl font-medium no-underline hover:text-gray-300"
+              href = "https://netflix-auth.auth.us-east-1.amazoncognito.com/logout?client_id=60vc4rb01ggqs6jqg6dch2brt7&response_type=code&scope=aws.cognito.signin.user.admin+email+openid+profile&redirect_uri=https%3A%2F%2Fwww.facebook.com"
+            >
+              Cerrar Sesión
+            </a>
+          </DropdownMenu.Item>
         </DropdownMenu.Content>
       </DropdownMenu.Root>
     </>
