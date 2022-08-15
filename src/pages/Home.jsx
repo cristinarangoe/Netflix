@@ -5,6 +5,7 @@ import HomeNavBar from "../components/HomeNavBar";
 import { helpers } from "../generalHelpers/contentfulHelpers";
 import { getDataByGenera } from "../utils/getDataByGenera";
 import Carrusel from "../components/carrusel";
+import Footer from "../components/Footer";
 
 function Home() {
   const [content, setContent] = useState();
@@ -26,19 +27,22 @@ function Home() {
     return <h1>Loading.........</h1>;
   }
   return (
-    <div className="bg-black/90 h-screen">
+    <div className="bg-black/90 ">
       <div className="relativez-10">
         <HomeNavBar />
       </div>
-      <div className="z-0">
+      <div className="z-0 my-3">
         {Array.from(content).map(([key, val]) => (
           <Carrusel
             key={key}
             content={[...val.movies, ...val.series]}
-            id="1"
+            id={key}
             genre={key}
           />
         ))}
+      </div>
+      <div>
+        <Footer estilo="bg-black/90" estiloSm="bg-black/90" />
       </div>
     </div>
   );
