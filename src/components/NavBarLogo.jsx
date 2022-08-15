@@ -6,7 +6,7 @@ export default function NavBarLogo() {
       <img
         src="/img/Logo.png"
         alt="netlix logo"
-        className="w-20 md:w-32 lg:w-40"
+        className="w-32 lg:w-40"
       />
     </div>
   );

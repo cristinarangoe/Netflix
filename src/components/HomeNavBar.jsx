@@ -1,24 +1,45 @@
-import { useState } from "react";
-import "./navbar.css";
+import React from "react";
+import NavBarLogo from "./NavBarLogo";
+import { Link } from "react-router-dom";
+import Dropdown from "./Dropdown";
 
-const HomeNavbar = () => {
-  
+export default function () {
   return (
-    <div className="navbar">
- 
-          <img className = "netflixLogo"
-            src="https://upload.wikimedia.org/wikipedia/commons/thumb/0/08/Netflix_2015_logo.svg/2560px-Netflix_2015_logo.svg.png"
-            alt=""
-          />
-          <div className = "navbarContent">
-          <span>Home</span>
-          <span>Series</span>
-          <span>Movies</span>
+    <div className="">
+      <div className="flex flex-row items-center">
+        <NavBarLogo />
+        <div className="ml-5 hidden sm:hidden md:inline">
+          <ul className="flex flex-row ">
+            <li className="pr-5" key="home">
+              <Link
+                to="/"
+                className="text-gray-300 text-xl font-medium hover:text-white"
+              >
+                Home
+              </Link>
+            </li>
+            <li className="pr-5" key="series">
+              <Link
+                to="/series"
+                className="text-gray-300 text-xl font-medium hover:text-white"
+              >
+                Series
+              </Link>
+            </li>
+            <li className="pr-5" key="movies">
+              <Link
+                to="/movies"
+                className="text-gray-300 text-xl font-medium hover:text-white"
+              >
+                Peliculas
+              </Link>
+            </li>
+          </ul>
+        </div>
+        <div className="ml-5 inline sm:inline md:hidden">
+          <Dropdown />
+        </div>
       </div>
-     
- 
     </div>
   );
-};
-
-export default HomeNavbar;
+}

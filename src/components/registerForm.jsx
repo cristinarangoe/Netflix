@@ -4,8 +4,7 @@ import { useNavigate } from "react-router-dom";
 export default function RegisterForm() {
   const { register, handleSubmit } = useForm();
   const navigate = useNavigate();
-  const onSubmit = (data) =>
-    navigate(`/signup/${data.email}`);
+  const onSubmit = (data) => navigate(`/signup/${data.email}`);
 
   return (
     <form
