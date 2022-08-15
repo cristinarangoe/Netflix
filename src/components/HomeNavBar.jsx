@@ -12,7 +12,7 @@ export default function () {
           <ul className="flex flex-row ">
             <li className="pr-5" key="home">
               <Link
-                to="/"
+                to="/home"
                 className="text-gray-300 text-xl font-medium hover:text-white"
               >
                 Home
