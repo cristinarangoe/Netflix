@@ -1,8 +1,5 @@
 import React from "react";
-import MediaItem from "./MediaItem";
-import { Link } from "react-router-dom";
-import * as Dialog from "@radix-ui/react-dialog";
-import Modal from "../components/Modal";
+import MediaDialog from "./MediaDialog";
 
 // cotent es una lista de series o peliculas
 export default function Carrusel({ content, genre, id }) {
@@ -14,7 +11,6 @@ export default function Carrusel({ content, genre, id }) {
     var slider = document.getElementById("slider" + id);
     slider.scrollLeft = slider.scrollLeft + 500;
   };
-
   // arreglo de modals
   return (
     <div className="mt-5 ml-3 md:ml-5">
@@ -45,7 +41,7 @@ export default function Carrusel({ content, genre, id }) {
           id={"slider" + id}
         >
           {content.map((e, key) => {
-            return <MediaItem key={key} name={e.name} image={e.image} />;
+            return <MediaDialog key={key} content={e}/>;
           })}
           {/* {content.map((e) => (
             <Dialog.Root >

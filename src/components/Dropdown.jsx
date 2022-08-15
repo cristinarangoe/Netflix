@@ -29,7 +29,7 @@ export default function Dropdown() {
             className=" border-none cursor-default focus:outline-none pb-3"
           >
             <Link
-              to="/"
+              to="/home"
               className="text-gray-300 text-xl font-medium no-underline hover:text-gray-300"
             >
               Home
@@ -40,7 +40,7 @@ export default function Dropdown() {
             className=" border-none cursor-default focus:outline-none pb-3"
           >
             <Link
-              to="/"
+              to="/movies"
               className="text-gray-300 text-xl font-medium no-underline hover:text-gray-300"
             >
               Peliculas
@@ -51,7 +51,7 @@ export default function Dropdown() {
             className=" border-none cursor-default focus:outline-none "
           >
             <Link
-              to="/"
+              to="/series"
               className="text-gray-300 text-xl font-medium no-underline hover:text-gray-300"
             >
               Series
