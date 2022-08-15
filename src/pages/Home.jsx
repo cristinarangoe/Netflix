@@ -6,10 +6,13 @@ import { helpers } from "../generalHelpers/contentfulHelpers";
 import { getDataByGenera } from "../utils/getDataByGenera";
 import Carrusel from "../components/carrusel";
 import Footer from "../components/Footer";
+import { useNavigate } from "react-router-dom";
 
 function Home() {
   const [content, setContent] = useState();
   const [isLoading, setLoading] = useState(true);
+
+  let navigate = useNavigate();
 
   useEffect(() => {
     //traer los datos y limpiandolos
@@ -21,6 +24,16 @@ function Home() {
         setLoading(false);
       }
     });
+
+
+    const userLogged = () =>{
+      console.log(localStorage.getItem("user"))
+      if (!localStorage.getItem("user")){
+        console.log("here")
+        navigate("/")
+      }
+    }
+    userLogged();
   }, [isLoading]);
 
   if (isLoading) {

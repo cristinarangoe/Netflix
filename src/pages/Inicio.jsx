@@ -1,8 +1,29 @@
-import React from "react";
+import React, { useEffect } from "react";
+import { useNavigate } from "react-router-dom";
 import InicioNav from "../components/inicioNav";
 import RegisterForm from "../components/registerForm";
 
 export default function SignInInicio() {
+  let navigate = useNavigate();
+  useEffect(()=>{
+    const authenticateUser = () => {
+      if (localStorage.getItem("user")){
+        console.log(localStorage.getItem("user"))
+        console.log("aca")
+        navigate("/home")
+      }
+      let userToken = window.location.search.split("?code=")[1]
+      console.log(userToken)
+      if (userToken){
+        console.log("not empty")
+         localStorage.setItem("user", window.location.search.split("?code=")[1])
+         navigate("/home")
+       }
+    }
+    authenticateUser()
+
+
+  },[])
   return (
     <div className="flex bg-[url('/img/ImgInicio.jpg')] bg-cover w-full h-full ">
       <div className="inline-block bg-[rgba(0,0,0,.4)] h-full w-full z-0 absolute"></div>
@@ -23,3 +44,4 @@ export default function SignInInicio() {
     </div>
   );
 }
+//////

@@ -1,8 +1,16 @@
 import React from "react";
 import * as DropdownMenu from "@radix-ui/react-dropdown-menu";
 import { Link } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 
 export default function Dropdown() {
+
+  const navigate = useNavigate();
+  const logOut = () =>{
+    
+    localStorage.removeItem("user");
+    navigate("/")
+  }
   return (
     <>
       <DropdownMenu.Root className="flex">
@@ -63,9 +71,9 @@ export default function Dropdown() {
           >
             <a
               className="text-gray-300 text-xl font-medium no-underline hover:text-gray-300"
-              href = "https://netflix-auth.auth.us-east-1.amazoncognito.com/logout?client_id=60vc4rb01ggqs6jqg6dch2brt7&response_type=code&scope=aws.cognito.signin.user.admin+email+openid+profile&redirect_uri=https%3A%2F%2Fwww.facebook.com"
+              onClick={logOut}
             >
-              Cerrar Sesión
+              Cerrar SesiÃ³n
             </a>
           </DropdownMenu.Item>
         </DropdownMenu.Content>

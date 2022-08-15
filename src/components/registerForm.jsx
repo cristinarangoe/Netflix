@@ -15,7 +15,7 @@ export default function RegisterForm() {
         ¿Quieres ver Netflix ya? Da click en el siguiente boton para crear una cuenta o
         reiniciar tu membresía de Netflix.
       </h3>
-      <a className="min-h-[48px] px-[1em] py-[0.25em] rounded-[2px] bg-red-600 mt-[0.5em] text-center flex flex-row items-center text-white hover:text-white" href="https://netflix-auth.auth.us-east-1.amazoncognito.com/signup?client_id=60vc4rb01ggqs6jqg6dch2brt7&response_type=code&scope=aws.cognito.signin.user.admin+email+openid+profile&redirect_uri=https%3A%2F%2Fwww.google.com">
+      <a className="min-h-[48px] px-[1em] py-[0.25em] rounded-[2px] bg-red-600 mt-[0.5em] text-center flex flex-row items-center text-white hover:text-white" href="https://netflix-auth.auth.us-east-1.amazoncognito.com/signup?client_id=60vc4rb01ggqs6jqg6dch2brt7&response_type=code&scope=aws.cognito.signin.user.admin+email+openid+profile&redirect_uri=https%3A%2F%2Fd3mymhkbgy5lvd.cloudfront.net%2F">
         <span className="text-[1rem]">Registrarse</span>
         <span>
           <svg
