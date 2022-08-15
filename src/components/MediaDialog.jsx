@@ -1,5 +1,6 @@
 import * as Dialog from "@radix-ui/react-dialog";
 import MediaItem from "./MediaItem";
+import React from "react";
 
 export default function MediaDialog({ content }) {
     
