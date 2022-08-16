@@ -2,27 +2,28 @@ import React, { useEffect } from "react";
 import { useNavigate } from "react-router-dom";
 import InicioNav from "../components/inicioNav";
 import RegisterForm from "../components/registerForm";
+import ReactGA from "react-ga"
+import appConfig from "../app.config";
 
-export default function SignInInicio() {
+
+ReactGA.initialize(appConfig.GOOGLE.GA_TRACKING_CODE)
+
+function SignInInicio() {
   let navigate = useNavigate();
   useEffect(()=>{
     const authenticateUser = () => {
       if (localStorage.getItem("user")){
-        console.log(localStorage.getItem("user"))
-        console.log("aca")
         navigate("/home")
       }
       let userToken = window.location.search.split("?code=")[1]
-      console.log(userToken)
       if (userToken){
-        console.log("not empty")
          localStorage.setItem("user", window.location.search.split("?code=")[1])
          navigate("/home")
        }
     }
     authenticateUser()
 
-
+    ReactGA.pageview(window.location.pathname + window.location.search)
   },[])
   return (
     <div className="flex bg-[url('/img/ImgInicio.jpg')] bg-cover w-full h-full ">
@@ -44,4 +45,6 @@ export default function SignInInicio() {
     </div>
   );
 }
+
+export default SignInInicio ;
 //////

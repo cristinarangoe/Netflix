@@ -1,13 +1,19 @@
 import * as Dialog from "@radix-ui/react-dialog";
 import MediaItem from "./MediaItem";
 import React from "react";
+import useEventTracker from "../hooks/useEventTracker";
 
 export default function MediaDialog({ content }) {
-    
+    const GAEventTracker= useEventTracker("Genres")
+    const gaTracker = () => {
+        content.genres.map((genre)=>{
+            GAEventTracker(genre)
+        })
+    }
   return (
     <Dialog.Root>
-      <Dialog.Trigger>
-        <MediaItem name={content.name} image={content.image} />
+      <Dialog.Trigger >
+        <a onClick={gaTracker}><MediaItem name={content.name} image={content.image} /></a>
       </Dialog.Trigger>
 
       <Dialog.Portal>

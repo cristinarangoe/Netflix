@@ -8,8 +8,18 @@ import Home from "./pages/Home";
 import Series from "./pages/Series";
 import Movies from "./pages/Movies";
 import MediaDetail from "./components/MediaDetail";
+import ReactGA from "react-ga";
+import appConfig from "./app.config";
+import { useEffect } from "react";
+
+ReactGA.initialize(appConfig.GOOGLE.GA_TRACKING_CODE)
 
 function App() {
+
+  
+useEffect(() => {
+  ReactGA.pageview(window.location.pathname + window.location.search)
+}, [])
   return (
     <Routes>
       <Route path="/" element={<Inicio />} />
