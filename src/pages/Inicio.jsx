@@ -1,8 +1,18 @@
-import React from "react";
+import React, {useEffect} from "react";
 import InicioNav from "../components/inicioNav";
 import RegisterForm from "../components/registerForm";
+import { useAuthenticator } from "@aws-amplify/ui-react";
+import { useNavigate } from "react-router";
 
 export default function SignInInicio() {
+  const navigate = useNavigate()
+  const { authStatus } = useAuthenticator();
+  useEffect(() => {
+    if (authStatus === "authenticated") {
+      navigate("/home");
+    }
+  } , [authStatus, navigate]);
+
   return (
     <div className="flex bg-[url('/img/ImgInicio.jpg')] bg-cover w-full h-full ">
       <div className="inline-block bg-[rgba(0,0,0,.4)] h-full w-full z-0 absolute"></div>
