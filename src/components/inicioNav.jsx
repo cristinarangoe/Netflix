@@ -5,7 +5,7 @@ export default function InicioNav() {
   return (
     <nav className=" ">
       <div className="flex flex-row w-full justify-between items-center">
-        <Link to="/">
+        <Link to="/home">
           <NavBarLogo />
         </Link>
         <div className="">
