@@ -1,7 +1,9 @@
 import { View, Image, Heading, Button, Text } from "@aws-amplify/ui-react";
-import { useTheme } from "@aws-amplify/ui-react";
 import { useAuthenticator } from "@aws-amplify/ui-react";
-
+import {
+  Authenticator,
+  useTheme,
+} from "@aws-amplify/ui-react";
 
 const authComponents = {
   Header() {
@@ -259,4 +261,4 @@ const formFields = {
   },
 };
 
-export  {authComponents, formFields};
+export { authComponents, formFields };

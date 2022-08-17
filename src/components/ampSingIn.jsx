@@ -27,18 +27,11 @@ export function AmpSingIn() {
             </Authenticator>
           </div>
           <div className="grid grid-cols-2 gap-2 my-5"></div>
-          <h3 className="text-gray-500 font-sm">
-            <Link to="/">olvide mi contraseña</Link>
-          </h3>
           <a className="text-gray-500 text-sm font-medium py-3">
             Necesitas ayuda?
           </a>
 
           <div className="">
-            <h3 className="text-gray-500 font-medium text-base">
-              Primera vez en netflix?
-              <Link to="/">Suscribete ahora</Link>
-            </h3>
             <h3 className="text-gray-500 text-sm">
               Esta página está protegida por Google reCAPTCHA para comprobar que
               no eres un robot. <a className="text-blue-700">Mas info.</a>
