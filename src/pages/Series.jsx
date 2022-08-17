@@ -6,13 +6,20 @@ import { helpers } from "../generalHelpers/contentfulHelpers";
 import { getDataByGeneraSeries } from "../utils/getDataByGenera";
 import Carrusel from "../components/carrusel";
 import Footer from "../components/Footer";
+import { useAuthenticator } from "@aws-amplify/ui-react";
+import { useNavigate } from "react-router";
 
 function Series() {
   const [content, setContent] = useState();
   const [isLoading, setLoading] = useState(true);
+  const {user, signOut} = useAuthenticator()
+  const navigate = useNavigate()
 
   useEffect(() => {
     //traer los datos y limpiandolos
+    if (signOut && !user) {
+      navigate("/");
+    }
     useContentful.getData().then((data) => {
       if (data) {
         const cleanContent = helpers.contentfulClean(data);

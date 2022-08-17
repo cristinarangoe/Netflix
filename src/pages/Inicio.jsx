@@ -8,10 +8,10 @@ import { useAuthenticator } from "@aws-amplify/ui-react";
 
 
 ReactGA.initialize(appConfig.GOOGLE.GA_TRACKING_CODE)
-const navigate = useNavigate()
-const {authStatus} = useAuthenticator();
+
 function SignInInicio() {
-  let navigate = useNavigate();
+  const navigate = useNavigate()
+  const {authStatus} = useAuthenticator();
   useEffect(()=>{
     if (authStatus === "authenticated") {
       navigate("/home");
