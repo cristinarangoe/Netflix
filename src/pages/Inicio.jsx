@@ -4,27 +4,20 @@ import InicioNav from "../components/inicioNav";
 import RegisterForm from "../components/registerForm";
 import ReactGA from "react-ga"
 import appConfig from "../app.config";
+import { useAuthenticator } from "@aws-amplify/ui-react";
 
 
 ReactGA.initialize(appConfig.GOOGLE.GA_TRACKING_CODE)
-
+const navigate = useNavigate()
+const {authStatus} = useAuthenticator();
 function SignInInicio() {
   let navigate = useNavigate();
   useEffect(()=>{
-    const authenticateUser = () => {
-      if (localStorage.getItem("user")){
-        navigate("/home")
-      }
-      let userToken = window.location.search.split("?code=")[1]
-      if (userToken){
-         localStorage.setItem("user", window.location.search.split("?code=")[1])
-         navigate("/home")
-       }
+    if (authStatus === "authenticated") {
+      navigate("/home");
     }
-    authenticateUser()
-
     ReactGA.pageview(window.location.pathname + window.location.search)
-  },[])
+  },[authStatus, navigate])
   return (
     <div className="flex bg-[url('/img/ImgInicio.jpg')] bg-cover w-full h-full ">
       <div className="inline-block bg-[rgba(0,0,0,.4)] h-full w-full z-0 absolute"></div>

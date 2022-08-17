@@ -1,0 +1,69 @@
+{
+  "providers": {
+    "awscloudformation": {
+      "AuthRoleName": "amplify-netflixapp-staging-210501-authRole",
+      "UnauthRoleArn": "arn:aws:iam::510111390214:role/amplify-netflixapp-staging-210501-unauthRole",
+      "AuthRoleArn": "arn:aws:iam::510111390214:role/amplify-netflixapp-staging-210501-authRole",
+      "Region": "us-east-1",
+      "DeploymentBucketName": "amplify-netflixapp-staging-210501-deployment",
+      "UnauthRoleName": "amplify-netflixapp-staging-210501-unauthRole",
+      "StackName": "amplify-netflixapp-staging-210501",
+      "StackId": "arn:aws:cloudformation:us-east-1:510111390214:stack/amplify-netflixapp-staging-210501/edd6f070-1cdd-11ed-a118-1273e9fb6e6b",
+      "AmplifyAppId": "d37fmei25x3k3x"
+    }
+  },
+  "auth": {
+    "Netflixapp": {
+      "service": "Cognito",
+      "providerPlugin": "awscloudformation",
+      "dependsOn": [],
+      "customAuth": false,
+      "frontendAuthConfig": {
+        "socialProviders": [
+          "FACEBOOK",
+          "GOOGLE"
+        ],
+        "usernameAttributes": [
+          "EMAIL"
+        ],
+        "signupAttributes": [
+          "FAMILY_NAME",
+          "GIVEN_NAME"
+        ],
+        "passwordProtectionSettings": {
+          "passwordPolicyMinLength": 8,
+          "passwordPolicyCharacters": [
+            "REQUIRES_LOWERCASE",
+            "REQUIRES_NUMBERS",
+            "REQUIRES_SYMBOLS",
+            "REQUIRES_UPPERCASE"
+          ]
+        },
+        "mfaConfiguration": "OFF",
+        "mfaTypes": [
+          "SMS"
+        ],
+        "verificationMechanisms": [
+          "EMAIL"
+        ]
+      },
+      "output": {
+        "UserPoolId": "us-east-1_nIrDY9Od4",
+        "AppClientIDWeb": "5pfqrh34hbiaf1m1qj0qk5rct7",
+        "AppClientID": "5trfkpk7pdc3opokf3v5oiloma",
+        "HostedUIDomain": "2pczucn9cf40-staging",
+        "IdentityPoolId": "us-east-1:a3e08145-3085-42f0-84a9-a4ba8b4b6901",
+        "UserPoolArn": "arn:aws:cognito-idp:us-east-1:510111390214:userpool/us-east-1_nIrDY9Od4",
+        "IdentityPoolName": "testAuthIdentityPool__staging",
+        "OAuthMetadata": "{\"AllowedOAuthFlows\":[\"code\"],\"AllowedOAuthScopes\":[\"phone\",\"email\",\"openid\",\"profile\",\"aws.cognito.signin.user.admin\"],\"CallbackURLs\":[\"http://localhost:5173/home\"],\"LogoutURLs\":[\"http://localhost:5173/\"]}",
+        "UserPoolName": "Netflixapp"
+      },
+      "lastPushTimeStamp": "2022-08-15T23:57:23.489Z",
+      "providerMetadata": {
+        "s3TemplateURL": "https://s3.amazonaws.com/amplify-netflixapp-staging-210501-deployment/amplify-cfn-templates/auth/Netflixapp-cloudformation-template.json",
+        "logicalId": "authNetflixapp"
+      },
+      "lastPushDirHash": "rqF0PYH1bgkr72lUkWKdAijA+Uc="
+    }
+  }
+}
