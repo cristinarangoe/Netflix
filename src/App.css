@@ -1,4 +1,29 @@
+.amplify-button[data-variation='primary'] {
+  background-color: black;
+}
+.amplify-button[data-variation='primary']:hover{
+  background-color: gray;
+}
 
+.amplify-button[data-variation='link']{
+  color: black;
+}
+
+.amplify-button[data-variation='link']:hover{
+  background-color: #888;
+  color: white;
+}
+
+.amplify-tab.button{
+  color: black;
+}
+
+.amplify-tabs-item[data-state=active] {
+  color: black;
+  border-color: hsl(0deg 100% 48%);
+  background-color: var(--amplify-components-tabs-item-active-background-color);
+  transition-property: none;
+}
 
 .logo {
   height: 6em;
