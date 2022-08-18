@@ -1,15 +1,18 @@
 import * as Dialog from "@radix-ui/react-dialog";
 import MediaItem from "./MediaItem";
-import React from "react";
+import React, { useEffect } from "react";
 import useEventTracker from "../hooks/useEventTracker";
 
+
+
 export default function MediaDialog({ content }) {
-    const GAEventTracker= useEventTracker("Genres")
+    const GAEventTracker= useEventTracker("External Links")
     const gaTracker = () => {
         content.genres.map((genre)=>{
             GAEventTracker(genre)
         })
     }
+
   return (
     <Dialog.Root>
       <Dialog.Trigger >

@@ -7,6 +7,12 @@ import { getDataByGeneraSeries } from "../utils/getDataByGenera";
 import Carrusel from "../components/carrusel";
 import Footer from "../components/Footer";
 
+import ReactGA from "react-ga"
+import appConfig from "../app.config"
+
+ReactGA.initialize(appConfig.GOOGLE.GA_TRACKING_CODE)
+
+
 function Series() {
   const [content, setContent] = useState();
   const [isLoading, setLoading] = useState(true);
@@ -21,6 +27,8 @@ function Series() {
         setLoading(false);
       }
     });
+
+    ReactGA.pageview(window.location.pathname + window.location.search)
   }, [isLoading]);
 
   if (isLoading) {

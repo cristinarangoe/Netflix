@@ -7,6 +7,10 @@ import { getDataByGenera } from "../utils/getDataByGenera";
 import Carrusel from "../components/carrusel";
 import Footer from "../components/Footer";
 import { useNavigate } from "react-router-dom";
+import ReactGA from "react-ga"
+import appConfig from "../app.config"
+
+ReactGA.initialize(appConfig.GOOGLE.GA_TRACKING_CODE)
 
 function Home() {
   const [content, setContent] = useState();
@@ -34,6 +38,7 @@ function Home() {
       }
     }
     userLogged();
+    ReactGA.pageview(window.location.pathname + window.location.search)
   }, [isLoading]);
 
   if (isLoading) {
