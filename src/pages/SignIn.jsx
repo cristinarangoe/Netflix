@@ -4,6 +4,8 @@ import { useNavigate } from "react-router-dom";
 import {AmpSingIn} from "../components/ampSingIn";
 import { useState, useEffect } from "react";
 
+import ReactGa from "react-ga4"
+
 
 
 export default function TestSingin() {
@@ -13,6 +15,11 @@ export default function TestSingin() {
   useEffect(() => {
     if (authStatus === "authenticated") {
       navigate("/home");
+    ReactGa.event({
+      action:"login_action",
+      category: "login_category",
+      label: "login_label"
+    })
     }
   } , [authStatus, navigate]);
   return (

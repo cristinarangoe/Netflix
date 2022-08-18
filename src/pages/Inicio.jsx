@@ -2,12 +2,10 @@ import React, { useEffect } from "react";
 import { useNavigate } from "react-router-dom";
 import InicioNav from "../components/inicioNav";
 import RegisterForm from "../components/registerForm";
-import ReactGA from "react-ga"
+import ReactGA from "react-ga4"
 import appConfig from "../app.config";
 import { useAuthenticator } from "@aws-amplify/ui-react";
 
-
-ReactGA.initialize(appConfig.GOOGLE.GA_TRACKING_CODE)
 
 function SignInInicio() {
   const navigate = useNavigate()
@@ -16,7 +14,6 @@ function SignInInicio() {
     if (authStatus === "authenticated") {
       navigate("/home");
     }
-    ReactGA.pageview(window.location.pathname + window.location.search)
   },[authStatus, navigate])
   return (
     <div className="flex bg-[url('/img/ImgInicio.jpg')] bg-cover w-full h-full ">

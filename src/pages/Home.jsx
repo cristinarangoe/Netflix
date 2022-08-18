@@ -9,11 +9,6 @@ import Footer from "../components/Footer";
 import { useNavigate } from "react-router-dom";
 import {useAuthenticator} from '@aws-amplify/ui-react'
 
-import ReactGA from "react-ga"
-import appConfig from "../app.config"
-
-ReactGA.initialize(appConfig.GOOGLE.GA_TRACKING_CODE)
-
 function Home() {
   const [content, setContent] = useState();
   const [isLoading, setLoading] = useState(true);

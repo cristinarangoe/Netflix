@@ -9,6 +9,9 @@ import Footer from "../components/Footer";
 import { useAuthenticator } from "@aws-amplify/ui-react";
 import { useNavigate } from "react-router";
 
+
+
+
 function Series() {
   const [content, setContent] = useState();
   const [isLoading, setLoading] = useState(true);

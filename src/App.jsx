@@ -8,7 +8,7 @@ import Home from "./pages/Home";
 import Series from "./pages/Series";
 import Movies from "./pages/Movies";
 import MediaDetail from "./components/MediaDetail";
-import ReactGA from "react-ga";
+import ReactGA from "react-ga4";
 import appConfig from "./app.config";
 import { useEffect } from "react";
 import { Auth } from "aws-amplify";
