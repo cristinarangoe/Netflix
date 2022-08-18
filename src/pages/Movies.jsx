@@ -6,20 +6,21 @@ import { helpers } from "../generalHelpers/contentfulHelpers";
 import { getDataByGeneraMovies } from "../utils/getDataByGenera";
 import Carrusel from "../components/carrusel";
 import Footer from "../components/Footer";
-
-import ReactGA from "react-ga"
-import appConfig from "../app.config"
-
-ReactGA.initialize(appConfig.GOOGLE.GA_TRACKING_CODE)
-
+import { useNavigate } from "react-router";
+import { useAuthenticator } from "@aws-amplify/ui-react";
 
 function Movies() {
   const [content, setContent] = useState();
   const [isLoading, setLoading] = useState(true);
+  const navigate = useNavigate()
+  const {user, signOut} = useAuthenticator() 
 
   useEffect(() => {
     //traer los datos y limpiandolos
     useContentful.getData().then((data) => {
+      if (signOut && !user) {
+        navigate("/");
+      }
       if (data) {
         const cleanContent = helpers.contentfulClean(data);
         const aux = getDataByGeneraMovies(cleanContent);
@@ -27,8 +28,7 @@ function Movies() {
         setLoading(false);
       }
     });
-    ReactGA.pageview(window.location.pathname + window.location.search)
-  }, [isLoading]);
+  }, [isLoading, navigate, signOut, user]);
 
   if (isLoading) {
     return (

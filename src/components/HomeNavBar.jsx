@@ -1,15 +1,15 @@
-import React from "react";
+import React, {useEffect} from "react";
 import NavBarLogo from "./NavBarLogo";
 import { Link } from "react-router-dom";
 import Dropdown from "./Dropdown";
 import { useNavigate } from "react-router-dom";
+import { useAuthenticator } from "@aws-amplify/ui-react";
 
 export default function () {
   const navigate = useNavigate();
-  const logOut = () =>{
-    localStorage.removeItem("user");
-    navigate("/")
-  }
+  const {user, signOut} = useAuthenticator();
+
+
   return (
     <div className="">
       <div className="flex flex-row items-center">
@@ -42,7 +42,7 @@ export default function () {
             </li>
             <li className="pr-5 absolute right-0" key="movies">
               <a
-                onClick={logOut}
+                onClick={signOut}
                 className="text-gray-300 text-xl font-medium hover:text-white mr-3"
               >
                 Cerrar sesión

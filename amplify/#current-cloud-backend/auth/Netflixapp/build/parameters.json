@@ -1,0 +1,73 @@
+{
+  "identityPoolName": "testAuthIdentityPool",
+  "allowUnauthenticatedIdentities": false,
+  "resourceNameTruncated": "netfli39696c52",
+  "userPoolName": "Netflixapp",
+  "autoVerifiedAttributes": [
+    "email"
+  ],
+  "mfaConfiguration": "OFF",
+  "mfaTypes": [
+    "SMS Text Message"
+  ],
+  "smsAuthenticationMessage": "Your authentication code is {####}",
+  "smsVerificationMessage": "Your verification code is {####}",
+  "emailVerificationSubject": "Verification code: {####}",
+  "emailVerificationMessage": "Verification code: {####}",
+  "defaultPasswordPolicy": false,
+  "passwordPolicyMinLength": 8,
+  "passwordPolicyCharacters": [
+    "Requires Lowercase",
+    "Requires Numbers",
+    "Requires Symbols",
+    "Requires Uppercase"
+  ],
+  "requiredAttributes": [
+    "family_name",
+    "given_name"
+  ],
+  "aliasAttributes": [],
+  "userpoolClientGenerateSecret": false,
+  "userpoolClientRefreshTokenValidity": 30,
+  "userpoolClientWriteAttributes": [],
+  "userpoolClientReadAttributes": [],
+  "userpoolClientLambdaRole": "Netfli39696c52_userpoolclient_lambda_role",
+  "userpoolClientSetAttributes": false,
+  "sharedId": "39696c52",
+  "resourceName": "Netflixapp",
+  "authSelections": "identityPoolAndUserPool",
+  "serviceName": "Cognito",
+  "usernameAttributes": [
+    "email"
+  ],
+  "useDefault": "manual",
+  "userPoolGroups": false,
+  "userPoolGroupList": [],
+  "adminQueries": false,
+  "thirdPartyAuth": false,
+  "authProviders": [],
+  "hostedUI": true,
+  "hostedUIDomainName": "2pczucn9cf40",
+  "authProvidersUserPool": [
+    "Facebook",
+    "Google"
+  ],
+  "hostedUIProviderMeta": "[{\"ProviderName\":\"Facebook\",\"authorize_scopes\":\"public_profile\",\"AttributeMapping\":{\"family_name\":\"last_name\",\"given_name\":\"first_name\",\"username\":\"id\"}},{\"ProviderName\":\"Google\",\"authorize_scopes\":\"openid profile\",\"AttributeMapping\":{\"family_name\":\"family_name\",\"given_name\":\"given_name\",\"username\":\"sub\"}}]",
+  "oAuthMetadata": "{\"AllowedOAuthFlows\":[\"code\"],\"AllowedOAuthScopes\":[\"phone\",\"email\",\"openid\",\"profile\",\"aws.cognito.signin.user.admin\"],\"CallbackURLs\":[\"http://localhost:5173/home\"],\"LogoutURLs\":[\"http://localhost:5173/\"]}",
+  "usernameCaseSensitive": false,
+  "useEnabledMfas": true,
+  "authRoleArn": {
+    "Fn::GetAtt": [
+      "AuthRole",
+      "Arn"
+    ]
+  },
+  "unauthRoleArn": {
+    "Fn::GetAtt": [
+      "UnauthRole",
+      "Arn"
+    ]
+  },
+  "breakCircularDependency": true,
+  "dependsOn": []
+}

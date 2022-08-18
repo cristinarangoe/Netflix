@@ -7,39 +7,29 @@ import { getDataByGenera } from "../utils/getDataByGenera";
 import Carrusel from "../components/carrusel";
 import Footer from "../components/Footer";
 import { useNavigate } from "react-router-dom";
-import ReactGA from "react-ga"
-import appConfig from "../app.config"
-
-ReactGA.initialize(appConfig.GOOGLE.GA_TRACKING_CODE)
+import {useAuthenticator} from '@aws-amplify/ui-react'
 
 function Home() {
   const [content, setContent] = useState();
   const [isLoading, setLoading] = useState(true);
-
-  let navigate = useNavigate();
-
+  const navigate = useNavigate()
+  const {user, signOut} = useAuthenticator();
+  
   useEffect(() => {
     //traer los datos y limpiandolos
     useContentful.getData().then((data) => {
+      if (signOut && !user) {
+        navigate("/");
+      }
       if (data) {
         const cleanContent = helpers.contentfulClean(data);
         const aux = getDataByGenera(cleanContent);
         setContent(aux);
         setLoading(false);
       }
+      //console.log(user)
     });
-
-
-    const userLogged = () =>{
-      console.log(localStorage.getItem("user"))
-      if (!localStorage.getItem("user")){
-        console.log("here")
-        navigate("/")
-      }
-    }
-    userLogged();
-    ReactGA.pageview(window.location.pathname + window.location.search)
-  }, [isLoading]);
+  }, [isLoading, user, signOut, navigate]);
 
   if (isLoading) {
     return (
@@ -66,7 +56,7 @@ function Home() {
               fill="currentFill"
             />
           </svg>
-          <span class="sr-only">Loading...</span>
+          <span className="sr-only">Loading...</span>
         </div>
       </div>
     );

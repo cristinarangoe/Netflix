@@ -6,19 +6,20 @@ import { helpers } from "../generalHelpers/contentfulHelpers";
 import { getDataByGeneraSeries } from "../utils/getDataByGenera";
 import Carrusel from "../components/carrusel";
 import Footer from "../components/Footer";
-
-import ReactGA from "react-ga"
-import appConfig from "../app.config"
-
-ReactGA.initialize(appConfig.GOOGLE.GA_TRACKING_CODE)
-
+import { useAuthenticator } from "@aws-amplify/ui-react";
+import { useNavigate } from "react-router";
 
 function Series() {
   const [content, setContent] = useState();
   const [isLoading, setLoading] = useState(true);
+  const {user, signOut} = useAuthenticator()
+  const navigate = useNavigate()
 
   useEffect(() => {
     //traer los datos y limpiandolos
+    if (signOut && !user) {
+      navigate("/");
+    }
     useContentful.getData().then((data) => {
       if (data) {
         const cleanContent = helpers.contentfulClean(data);
@@ -27,9 +28,7 @@ function Series() {
         setLoading(false);
       }
     });
-
-    ReactGA.pageview(window.location.pathname + window.location.search)
-  }, [isLoading]);
+  }, [isLoading, navigate, signOut, user]);
 
   if (isLoading) {
     return (
