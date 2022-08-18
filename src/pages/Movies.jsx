@@ -28,6 +28,7 @@ function Movies() {
         setLoading(false);
       }
     });
+    ReactGA.pageview(window.location.pathname + window.location.search)
   }, [isLoading, navigate, signOut, user]);
 
   if (isLoading) {
