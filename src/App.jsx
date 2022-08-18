@@ -1,55 +1,37 @@
-import { useState } from 'react'
-import reactLogo from './assets/react.svg'
-import './App.css'
-import useContentful from './services/getContentful'
-import { useEffect } from 'react'
-import MediaItem from './components/MediaItem'
+import "./App.css";
+import { Routes, Route, Link } from "react-router-dom";
+import Inicio from "./pages/Inicio";
+import SignIn from "./pages/SignIn";
+import Home from "./pages/Home";
+//import Series from "./pages/Series";
+//import Movies from "./pages/Movies";
+import MediaDetail from "./components/MediaDetail";
+import ReactGA from "react-ga4";
+import appConfig from "./app.config";
+import { useEffect } from "react";
+import { Auth } from "aws-amplify";
+import { Authenticator } from "@aws-amplify/ui-react";
+import awsmobile from "./services/aws-exports";
+Auth.configure(awsmobile);
+
+ReactGA.initialize(appConfig.GOOGLE.GA_TRACKING_CODE);
 
 function App() {
-  const [count, setCount] = useState(0)
-  const [movies, setMovies] = useState({});
-  const [series, setSeries] = useState({});
-
-  useEffect(()=>{
-    const getMovies = async () =>{
-      const data = await useContentful.getData()
-      setMovies(data.movies);
-      setSeries(data.series);
-    } 
-    getMovies()
-    
-  },[])
-
+  useEffect(() => {
+    ReactGA.pageview(window.location.pathname + window.location.search);
+  }, []);
   return (
-    <div className="App">
-      <MediaItem media={movies[0]}/>
-      <MediaItem media = {series[0]}/>
-      sasas
-        <h1 class="text-3xl font-bold underline text-green-900">
-          Hello world!
-        </h1>
-      <div>
-        <a href="https://vitejs.dev" target="_blank">
-          <img src="/vite.svg" className="logo" alt="Vite logo" />
-        </a>
-        <a href="https://reactjs.org" target="_blank">
-          <img src={reactLogo} className="logo react" alt="React logo" />
-        </a>
-      </div>
-      <h1>Vite + React</h1>
-      <div className="card">
-        <button onClick={() => setCount((count) => count + 1)}>
-          count is {count}
-        </button>
-        <p>
-          Edit <code>src/App.jsx</code> and save to test HMR
-        </p>
-      </div>
-      <p className="read-the-docs">
-        Click on the Vite and React logos to learn more
-      </p>
-    </div>
-  )
+    <Authenticator.Provider>
+      <Routes>
+        <Route path="/" element={<Inicio />} />
+        <Route path="/signin" element={<SignIn />} />
+        <Route path="/home" element={<Home />} />
+        <Route path="/series" element={<Series />} />
+        <Route path="/movies" element={<Movies />} />
+        <Route path="/mediadetail" element={<MediaDetail />} /> 
+      </Routes>
+    </Authenticator.Provider>
+  );
 }
 
-export default App
+export default App;
