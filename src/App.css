@@ -1,12 +1,12 @@
 .amplify-button[data-variation='primary'] {
-  background-color: black;
+  background-color: red;
 }
 .amplify-button[data-variation='primary']:hover{
-  background-color: gray;
+  background-color: rgb(98, 1, 1);
 }
 
 .amplify-button[data-variation='link']{
-  color: black;
+  color: white;
 }
 
 .amplify-button[data-variation='link']:hover{
@@ -14,9 +14,71 @@
   color: white;
 }
 
-.amplify-tab.button{
-  color: black;
+.amplify-tabs-item:hover{
+  color: red;
 }
+
+div[data-orientation='horizontal']{
+  background-color: black;
+}
+
+.amplify-heading.amplify-heading--3{
+  color: white;
+}
+
+span.amplify-text{
+  color: white;
+}
+
+hr.amplify-divider--label::after{
+  color: white;
+  background-color: black;
+  font-size: 1rem;
+}
+
+label.amplify-label{
+  color: white;
+}
+
+input.amplify-input{
+  color: white;
+}
+
+button.amplify-field__show-password{
+  color: white;
+}
+
+button.amplify-field__show-password:hover{
+  color: white;
+  background-color: rgb(55, 55, 55);
+  border-color: white;
+}
+
+button.amplify-field__show-password:focus{
+  color: white;
+  background-color: rgb(55, 55, 55);
+  border-color: white;
+}
+
+button.amplify-button--small{
+  background-color: red;
+  margin-bottom: 1rem;
+}
+
+button.amplify-tabs-item[data-state=active]{
+ color: white;
+ border-color: red;
+}
+
+button.amplify-tabs-item[data-state=inactive]{
+  color: white;
+  background-color: rgb(92, 92, 92);
+}
+
+#bglogin{
+  background-color: black
+}
+
 
 .amplify-tabs-item[data-state=active] {
   color: black;

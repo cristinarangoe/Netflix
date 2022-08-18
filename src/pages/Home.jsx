@@ -29,7 +29,7 @@ function Home() {
       }
       //console.log(user)
     });
-  }, [isLoading, user, signOut]);
+  }, [isLoading, user, signOut, navigate]);
 
   if (isLoading) {
     return (

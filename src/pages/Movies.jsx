@@ -28,7 +28,7 @@ function Movies() {
         setLoading(false);
       }
     });
-  }, [isLoading]);
+  }, [isLoading, navigate, signOut, user]);
 
   if (isLoading) {
     return (

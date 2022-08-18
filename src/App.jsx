@@ -13,7 +13,7 @@ import appConfig from "./app.config";
 import { useEffect } from "react";
 import { Auth } from "aws-amplify";
 import { Authenticator } from "@aws-amplify/ui-react";
-import awsmobile from "./aws-exports.js";
+import awsmobile from "./services/aws-exports";
 import "@aws-amplify/ui-react/styles.css ";
 Auth.configure(awsmobile);
 

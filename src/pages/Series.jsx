@@ -28,7 +28,7 @@ function Series() {
         setLoading(false);
       }
     });
-  }, [isLoading]);
+  }, [isLoading, navigate, signOut, user]);
 
   if (isLoading) {
     return (
