@@ -55,15 +55,15 @@
         "IdentityPoolId": "us-east-1:a3e08145-3085-42f0-84a9-a4ba8b4b6901",
         "UserPoolArn": "arn:aws:cognito-idp:us-east-1:510111390214:userpool/us-east-1_nIrDY9Od4",
         "IdentityPoolName": "testAuthIdentityPool__staging",
-        "OAuthMetadata": "{\"AllowedOAuthFlows\":[\"code\"],\"AllowedOAuthScopes\":[\"phone\",\"email\",\"openid\",\"profile\",\"aws.cognito.signin.user.admin\"],\"CallbackURLs\":[\"http://localhost:5173/home\"],\"LogoutURLs\":[\"http://localhost:5173/\"]}",
+        "OAuthMetadata": "{\"AllowedOAuthFlows\":[\"code\"],\"AllowedOAuthScopes\":[\"phone\",\"email\",\"openid\",\"profile\",\"aws.cognito.signin.user.admin\"],\"CallbackURLs\":[\"https://d1vtcma5pcmud6.cloudfront.net/home\"],\"LogoutURLs\":[\"https://d1vtcma5pcmud6.cloudfront.net/\"]}",
         "UserPoolName": "Netflixapp"
       },
-      "lastPushTimeStamp": "2022-08-15T23:57:23.489Z",
+      "lastPushTimeStamp": "2022-08-18T16:45:04.368Z",
       "providerMetadata": {
         "s3TemplateURL": "https://s3.amazonaws.com/amplify-netflixapp-staging-210501-deployment/amplify-cfn-templates/auth/Netflixapp-cloudformation-template.json",
         "logicalId": "authNetflixapp"
       },
-      "lastPushDirHash": "rqF0PYH1bgkr72lUkWKdAijA+Uc="
+      "lastPushDirHash": "nhpInoKIkmFJ90uytgJAbFVFWo8="
     }
   }
 }

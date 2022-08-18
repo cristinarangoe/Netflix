@@ -194,7 +194,7 @@
           "hostedUIDomainName": "2pczucn9cf40",
           "authProvidersUserPool": "Facebook,Google",
           "hostedUIProviderMeta": "[{\"ProviderName\":\"Facebook\",\"authorize_scopes\":\"public_profile\",\"AttributeMapping\":{\"family_name\":\"last_name\",\"given_name\":\"first_name\",\"username\":\"id\"}},{\"ProviderName\":\"Google\",\"authorize_scopes\":\"openid profile\",\"AttributeMapping\":{\"family_name\":\"family_name\",\"given_name\":\"given_name\",\"username\":\"sub\"}}]",
-          "oAuthMetadata": "{\"AllowedOAuthFlows\":[\"code\"],\"AllowedOAuthScopes\":[\"phone\",\"email\",\"openid\",\"profile\",\"aws.cognito.signin.user.admin\"],\"CallbackURLs\":[\"http://localhost:5173/home\"],\"LogoutURLs\":[\"http://localhost:5173/\"]}",
+          "oAuthMetadata": "{\"AllowedOAuthFlows\":[\"code\"],\"AllowedOAuthScopes\":[\"phone\",\"email\",\"openid\",\"profile\",\"aws.cognito.signin.user.admin\"],\"CallbackURLs\":[\"https://d1vtcma5pcmud6.cloudfront.net/home\"],\"LogoutURLs\":[\"https://d1vtcma5pcmud6.cloudfront.net/\"]}",
           "usernameCaseSensitive": false,
           "useEnabledMfas": true,
           "authRoleArn": {
