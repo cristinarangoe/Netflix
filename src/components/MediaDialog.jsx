@@ -1,13 +1,16 @@
 import * as Dialog from "@radix-ui/react-dialog";
 import MediaItem from "./MediaItem";
 import React from "react";
-import useEventTracker from "../hooks/useEventTracker";
+import ReactGa from "react-ga4";
 
 export default function MediaDialog({ content }) {
-    const GAEventTracker= useEventTracker("Genres")
     const gaTracker = () => {
         content.genres.map((genre)=>{
-            GAEventTracker(genre)
+            ReactGa.event({
+                action:"select_content",
+                category: "genre_category",
+                label: JSON.stringify(genre)
+            }) 
         })
     }
   return (

@@ -2,7 +2,7 @@ import React, { useEffect } from "react";
 import { useNavigate } from "react-router-dom";
 import InicioNav from "../components/inicioNav";
 import RegisterForm from "../components/registerForm";
-import ReactGA from "react-ga"
+import ReactGA from "react-ga4"
 import appConfig from "../app.config";
 
 
