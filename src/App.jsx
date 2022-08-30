@@ -5,6 +5,8 @@ import SignIn from "./pages/SignIn";
 import Home from "./pages/Home";
 import Series from "./pages/Series";
 import Movies from "./pages/Movies";
+import AddMovie from "./pages/AddMovie";
+import AddSerie from "./pages/AddSeries";
 import MediaDetail from "./components/MediaDetail";
 import ReactGA from "react-ga4";
 import appConfig from "./app.config";
@@ -29,6 +31,8 @@ function App() {
         <Route path="/series" element={<Series />} />
         <Route path="/movies" element={<Movies />} />
         <Route path="/mediadetail" element={<MediaDetail />} />
+        <Route path="/addmovie" element={<AddMovie/>} />
+        <Route path="/addserie" element={<AddSerie/>} />
       </Routes>
     </Authenticator.Provider>
   );

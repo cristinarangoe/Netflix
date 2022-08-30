@@ -4,7 +4,7 @@ import { Link } from "react-router-dom";
 import Dropdown from "./Dropdown";
 import { useAuthenticator } from "@aws-amplify/ui-react";
 
-export default function () {
+export default function HomeNavBar() {
   const {user, signOut} = useAuthenticator();
 
   return (
@@ -37,13 +37,13 @@ export default function () {
                 Peliculas
               </Link>
             </li>
-            <li className="pr-5 absolute right-0" key="movies">
-              <a
+            <li className="pr-5 absolute right-0" key="cerrarSesion">
+              <button
                 onClick={signOut}
                 className="text-gray-300 text-xl font-medium hover:text-white mr-3"
               >
                 Cerrar sesión
-              </a>
+              </button>
             </li>
           </ul>
         </div>

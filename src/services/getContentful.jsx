@@ -26,6 +26,9 @@ const useContentful = {
         console.log(error);
       }
    }
+
 }
+
+
 
 export default useContentful;

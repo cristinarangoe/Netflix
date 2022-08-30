@@ -17,7 +17,7 @@ export default function Carrusel({ content, genre, id }) {
       <h2 className="text-white font-bold text-xl ml-1">{genre}</h2>
       <div className="relative flex items-center group">
         <button
-          className="transition-all h-10 w-10 hover:h-16 hover:w-16 left-0 rounded-full absolute cursor-pointer hidden group-hover:block z-10"
+          className="transition-all h-10 w-10 hover:h-16 hover:w-16 left-0 rounded-full absolute cursor-pointer hidden group-hover:block z-10 bg-transparent"
           onClick={slideLeft}
         >
           <span>
@@ -37,22 +37,16 @@ export default function Carrusel({ content, genre, id }) {
         </button>
 
         <div
-          className="overflow-x-scroll whitespace-nowrap scroll-smooth scrollbar-hide relative"
+          className="overflow-x-scroll whitespace-nowrap scroll-smooth scrollbar-hide relative focus-visible:outline-none"
           id={"slider" + id}
         >
           {content.map((e, key) => {
-            return <MediaDialog key={key} content={e}/>;
+            return <MediaDialog key={key} content={e} />;
           })}
-          {/* {content.map((e) => (
-            <Dialog.Root >
-                <Dialog.Trigger><MediaItem name={e.name} image={e.image} /></Dialog.Trigger>
-                    <Modal/>
-            </Dialog.Root>
-          ))} */}
         </div>
 
         <button
-          className="transition-all h-10 w-10 hover:h-16 hover:w-16 right-0 rounded-full absolute cursor-pointer hidden group-hover:block z-10"
+          className=" transition-all h-10 w-10 hover:h-16 hover:w-16 right-0 rounded-full absolute cursor-pointer hidden group-hover:block z-10 bg-transparent border-transparent"
           onClick={slideRight}
         >
           <span>

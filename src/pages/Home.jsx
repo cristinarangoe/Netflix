@@ -1,5 +1,6 @@
 import { useState } from "react";
 import useContentful from "../services/getContentful";
+import manageContentful from "../services/manageContentful";
 import { useEffect } from "react";
 import HomeNavBar from "../components/HomeNavBar";
 import { helpers } from "../generalHelpers/contentfulHelpers";
@@ -29,12 +30,79 @@ function Home() {
       }
       //console.log(user)
     });
+    manageContentful.createEntry({
+      name: {
+        'en-US': 'Entry title'
+        },
+      description: {
+        'en-US':{
+          nodeType:  "document",
+          data: {},
+          content: [
+            {
+              nodeType: "paragraph",
+              content: [
+                {
+                  nodeType: 'text',
+                  marks: [],
+                  value: "hola soy la pelicula de prueba",
+                  data: {},
+                }
+              ],
+              data:{},
+            }
+          ],
+        }},
+      adult: {
+        'en-US':false
+      },
+      // genres: [{
+      //   sys: {
+      //     id: "1jPgW3pKRGyDEjBn5BQkzL",
+      //     linkType: "Entry",
+      //     type:"Link",
+      //   }
+      // }, {
+      //   sys: {
+      //     id: "4X0AKjIkY9JHN6eAlHuFx5",
+      //     linkType: "Entry",
+      //     type:"Link",
+      //   }
+      // }],
+      // cast: [
+      //   {
+      //     sys: {
+      //       type: "Link",
+      //       linkType: "Entry",
+      //       id: "6vbl1OgRhlBISa05oMF6TO"
+      //     }
+      //   },
+      //   {
+      //     sys: {
+      //       type: "Link",
+      //       linkType: "Entry",
+      //       id: "5HXSC3BGmiyncpeAER3Ci8"
+      //     }
+      //   }
+      // ],
+      // image: {
+      //   sys: {
+      //       type: "Link",
+      //       linkType: "Asset",
+      //       id: "4trRPsi0g7OYkwp0PMZCQJ"
+      //   }
+      // },
+      duration: {
+        'en-US':'20 min'},
+      price: {'en-US':5626}
+    }).then(data => console.log(data));
+    manageContentful.getData()
   }, [isLoading, user, signOut, navigate]);
 
   if (isLoading) {
     return (
       <div className="bg-black/90 h-full w-full">
-        <div className="relativez-10">
+        <div className="relative z-10">
           <HomeNavBar />
         </div>
         <div
