@@ -12,6 +12,8 @@ import { useEffect } from "react";
 import { Auth } from "aws-amplify";
 import { Authenticator } from "@aws-amplify/ui-react";
 import awsmobile from "./services/aws-exports";
+import BuyMediaContext from "./context/BuyMediaContext"
+import Profile from "./pages/Profile"
 Auth.configure(awsmobile);
 
 ReactGA.initialize(appConfig.GOOGLE.GA_TRACKING_CODE);
@@ -21,7 +23,8 @@ function App() {
     ReactGA.pageview(window.location.pathname + window.location.search);
   }, []);
   return (
-    <Authenticator.Provider>
+    
+    <Authenticator.Provider >
       <Routes>
         <Route path="/" element={<Inicio />} />
         <Route path="/signin" element={<SignIn />} />
@@ -29,6 +32,7 @@ function App() {
         <Route path="/series" element={<Series />} />
         <Route path="/movies" element={<Movies />} />
         <Route path="/mediadetail" element={<MediaDetail />} />
+        <Route path="/profile" element={<Profile />} />
       </Routes>
     </Authenticator.Provider>
   );

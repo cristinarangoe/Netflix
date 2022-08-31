@@ -21,6 +21,7 @@ const useContentful = {
             select: "fields"
             //order: "fields.edad"
           });
+          //console.log(await client.getEntry('3r47fpVLzFN6LtbZ1yQnV1'))
         return {movies: movies.items, series: series.items};
       } catch (error) {
         console.log(error);

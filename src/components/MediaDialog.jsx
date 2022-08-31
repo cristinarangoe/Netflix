@@ -1,11 +1,17 @@
 import * as Dialog from "@radix-ui/react-dialog";
 import MediaItem from "./MediaItem";
-import React, { useEffect } from "react";
+import React, { useEffect, useState, createContext} from "react";
 import useEventTracker from "../hooks/useEventTracker";
 import ReactGa from "react-ga4"
+import BuyMediaContext from "../context/BuyMediaContext";
 
+import { useSelector, useDispatch } from "react-redux";
+import { toggleAddItem } from "../storeData/buyItems";
 
 export default function MediaDialog({ content }) {
+
+    const buyItems = useSelector(state=>state.buyItems)
+    const dispatch = useDispatch();
     const gaTracker = () => {
         content.genres.map((genre)=>{
             ReactGa.event({
@@ -16,7 +22,13 @@ export default function MediaDialog({ content }) {
         })
     }
 
+    const buyMedia = () =>{
+        let item = {id: content.id, name: content.name, image: content.image, price: content.price, type:content.type}
+        dispatch(toggleAddItem(item))
+    }
+
   return (
+    <BuyMediaContext.Provider value ={global.cartItems}>
     <Dialog.Root>
       <Dialog.Trigger >
         <a onClick={gaTracker}><MediaItem name={content.name} image={content.image} /></a>
@@ -56,13 +68,18 @@ export default function MediaDialog({ content }) {
                         </div>
                     </div>
                 </div>
+                <div className="flex justify-center grid grid-cols-2">
+            
+                       <span className="text-white align font-bold mt-2">price: <span className="text-lime-600 align ">{content.price}$</span></span>
+                       <button className="text-white align" onClick={buyMedia} >buy</button>
+                </div>
                 <div>
                     {'episodes' in content &&
                     <div className="w-full block mt-3">
                         <h2 className="text-white font-bold text-xl mb-2">Episodes</h2>
                         {content.episodes.map((episode,key) =>{
                             return (
-                                <div>
+                                <div key={key}>
                                     <div className="hidden sm:hidden md:inline">
                                         <div className=" flex flex-row h-auto w-full mb-3 border-b border-gray-400 pb-2">
                                             <div className="mr-3 text-white text-center inline-block align-middle my-auto">{key + 1}</div>
@@ -99,11 +116,13 @@ export default function MediaDialog({ content }) {
                     </div>}
 
                 </div>
-
+                        
             </div>
-          <Dialog.Close />
+
         </Dialog.Content>
       </Dialog.Portal>
     </Dialog.Root>
+    </BuyMediaContext.Provider>
+
   );
 }

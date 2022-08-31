@@ -64,7 +64,7 @@ function Movies() {
       </div>
       <div className="z-0 my-3">
         {Array.from(content).map(([key, val]) => (
-          <Carrusel key={key} content={val} id={key} genre={key} />
+          <Carrusel key={val.name + key} content={val} id={key} genre={key} />
         ))}
       </div>
       <div>

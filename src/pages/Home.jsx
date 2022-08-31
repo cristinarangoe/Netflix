@@ -9,11 +9,20 @@ import Footer from "../components/Footer";
 import { useNavigate } from "react-router-dom";
 import {useAuthenticator} from '@aws-amplify/ui-react'
 
+import {useDispatch } from "react-redux";
+import { toggleAddData } from "../storeData/userData";
+
+import {Auth} from 'aws-amplify'
+
+
 function Home() {
   const [content, setContent] = useState();
   const [isLoading, setLoading] = useState(true);
   const navigate = useNavigate()
   const {user, signOut} = useAuthenticator();
+  global.cartItems = []
+
+  const dispatch = useDispatch();
   
   useEffect(() => {
     //traer los datos y limpiandolos
@@ -27,8 +36,9 @@ function Home() {
         setContent(aux);
         setLoading(false);
       }
-      //console.log(user)
+      dispatch(toggleAddData(user))
     });
+    
   }, [isLoading, user, signOut, navigate]);
 
   if (isLoading) {
@@ -69,7 +79,7 @@ function Home() {
       <div className="z-0 my-3">
         {Array.from(content).map(([key, val]) => (
           <Carrusel
-            key={key}
+            key={ "media"+key}
             content={[...val.movies, ...val.series]}
             id={key}
             genre={key}

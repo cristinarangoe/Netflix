@@ -29,11 +29,11 @@ export const helpers = {
         let series = []
         for (let index = 0; index < data.movies.length; index++) {
             let movieData = data.movies[index].fields
-            movies.push({name: movieData.name, description: this.descriptionValue(movieData.description), image: this.imageValue(movieData.image), adult: movieData.adult, genres: this.arrayValue(movieData.genres), cast: this.arrayValue(movieData.cast), duration: movieData.duration})
+            movies.push({id: data.movies[index].sys.id, name: movieData.name, description: this.descriptionValue(movieData.description), image: this.imageValue(movieData.image), adult: movieData.adult, genres: this.arrayValue(movieData.genres), cast: this.arrayValue(movieData.cast), duration: movieData.duration, price: movieData.price, type:"movie"})
         }
         for (let index = 0; index < data.series.length; index++) {
             let serieData = data.series[index].fields;
-            series.push({name: serieData.name, description: this.descriptionValue(serieData.description), image: this.imageValue(serieData.image), adult: serieData.adult, genres: this.arrayValue(serieData.genres), cast: this.arrayValue(serieData.cast), duration: serieData.duration, episodes: this.episodeValue(serieData.episodes)});
+            series.push({id: data.movies[index].sys.id, name: serieData.name, description: this.descriptionValue(serieData.description), image: this.imageValue(serieData.image), adult: serieData.adult, genres: this.arrayValue(serieData.genres), cast: this.arrayValue(serieData.cast), duration: serieData.duration, price:serieData.price , episodes: this.episodeValue(serieData.episodes),type:"serie"});
         
         }
         return {movies, series};
