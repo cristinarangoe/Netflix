@@ -68,11 +68,11 @@ export default function Dropdown() {
           </DropdownMenu.Item>
           <DropdownMenu.Item
             key="perfil"
-            className=" border-none cursor-default focus:outline-none "
+            className=" border-none cursor-default focus:outline-none my-3"
           >
             <Link
               to="/profile"
-              className="text-gray-300 text-xl font-medium no-underline hover:text-gray-300"
+              className="text-gray-300 text-xl font-medium no-underline hover:text-gray-300 "
             >
               Perfil del usuario
             </Link>

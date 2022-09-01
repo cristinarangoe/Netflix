@@ -56,7 +56,7 @@ export default function HomeNavBar() {
             <li className="" key="movies">
               <button
                 onClick={signOut}
-                className="text-gray-300 text-xl font-medium hover:text-white mr-3 p-0"
+                className="text-gray-300 text-xl font-medium hover:text-white mr-3 p-0 bg-transparent"
               >
                 Cerrar sesión
               </button>

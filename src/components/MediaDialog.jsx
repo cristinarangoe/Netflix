@@ -70,8 +70,8 @@ export default function MediaDialog({ content }) {
                 </div>
                 <div className="flex justify-center grid grid-cols-2">
             
-                       <span className="text-white align font-bold mt-2">price: <span className="text-lime-600 align ">{content.price}$</span></span>
-                       <button className="text-white align" onClick={buyMedia} >buy</button>
+                       <span className="text-white align font-bold mt-2 text-xl">Precio: <span className="text-red-600 align ">{content.price}$</span></span>
+                       <button className="text-white align bg-red-600" onClick={buyMedia} >Añadir al carrito</button>
                 </div>
                 <div>
                     {'episodes' in content &&
