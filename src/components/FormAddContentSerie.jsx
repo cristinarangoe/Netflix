@@ -2,7 +2,7 @@ import React from "react";
 import { useForm } from "react-hook-form";
 import { useNavigate } from "react-router-dom";
 
-export default function FormAddContentSerie() {
+export default function FormAddContentSerie({genres}) {
   const { register, handleSubmit } = useForm();
   const navigate = useNavigate();
   const onSubmit = (data) => alert(JSON.stringify(data));
@@ -61,12 +61,17 @@ export default function FormAddContentSerie() {
             {...register("gender1")}
             className="w-full p-[10px] h-[48px] my-[10px] bg-gray-300 placeholder:text-black border border-gray-200 rounded-md"
           >
-            <option value="Drama">Drama</option>
+              {genres.items.map((g,key) => 
+            <option key={key} value={g.fields.name}>
+              {g.fields.name}
+            </option>
+            )}
+            {/* <option value="Drama">Drama</option>
             <option value="TvDrama">Tv Drama</option>
             <option value="RomanticTVDrama">Romantic TV Drama</option>
             <option value="Comedia">Comedia</option>
             <option value="Epics">Epics</option>
-            <option value="MoviesBasedOnBooks">Movies Based On Books</option>
+            <option value="MoviesBasedOnBooks">Movies Based On Books</option> */}
           </select>
         </div>
         <div>
@@ -77,12 +82,11 @@ export default function FormAddContentSerie() {
             {...register("gender2")}
             className="w-full p-[10px] h-[48px] my-[10px] bg-gray-300 placeholder:text-black border border-gray-200 rounded-md"
           >
-            <option value="Drama">Drama</option>
-            <option value="TvDrama">Tv Drama</option>
-            <option value="RomanticTVDrama">Romantic TV Drama</option>
-            <option value="Comedia">Comedia</option>
-            <option value="Epics">Epics</option>
-            <option value="MoviesBasedOnBooks">Movies Based On Books</option>
+            {genres.items.map((g,key) => 
+            <option key={key} value={g.fields.name}>
+              {g.fields.name}
+            </option>
+            )}s
           </select>
         </div>
         <div>

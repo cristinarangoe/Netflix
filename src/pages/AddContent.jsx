@@ -4,9 +4,11 @@ import Footer from "../components/Footer";
 import FormAddContentMovie from "../components/FormAddContentMovie";
 import FormAddContentSerie from '../components/FormAddContentSerie';
 import HomeNavBar from "../components/HomeNavBar";
+import useContentfulGenres from '../hooks/useContentfulGenres';
 
 
 export default function AddContent() {
+  const {data:genreData,isError,isLoading} = useContentfulGenres();
   const [active, setActive] = useState({tab1: true, tab2: false});
 
   const changeTabState = (tab) =>{
@@ -19,6 +21,29 @@ export default function AddContent() {
     })
     }
   }
+  
+  if(isError) return (
+    <div className=" bg-black bg-cover h-full w-full">
+        <div className="relative z-10 md:bg-black/80">
+            <HomeNavBar/>
+        </div>
+        <div className='flex flex-col align-center justify-cente'>
+            <h3>{'Something whent wrong' + isError}</h3>
+        </div>
+    </div>
+  )
+  
+    if(isLoading) return (
+    <div className=" bg-black bg-cover h-full w-full">
+        <div className="relative z-10 md:bg-black/80">
+            <HomeNavBar/>
+        </div>
+        <div className='flex flex-col align-center justify-cente'>
+            <h3>Loading genres...</h3>
+        </div>
+    </div>
+  )
+  
   return (
     <div className=" bg-black bg-cover h-full w-full">
       <div className="relative z-10 md:bg-black/80">
@@ -32,11 +57,11 @@ export default function AddContent() {
           </Tabs.List>
           <Tabs.Content value="tab1">
             <h3 className="text-white text-2xl text-center my-5 px-3">¿Cuál película te gustaría ver en nuestro portafolio?</h3>
-            <FormAddContentMovie/>
+            <FormAddContentMovie genres={genreData}/>
           </Tabs.Content>
           <Tabs.Content value="tab2">
           <h3 className="text-white text-2xl text-center my-5 px-3">¿Cuál Serie te gustaría ver en nuestro portafolio?</h3>
-            <FormAddContentSerie/>
+            <FormAddContentSerie genres={genreData}/>
           </Tabs.Content>
         </Tabs.Root>
     </div>
