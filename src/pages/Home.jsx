@@ -27,9 +27,9 @@ function Home() {
   useEffect(() => {
     //traer los datos y limpiandolos
     useContentful.getData().then((data) => {
-      if (signOut && !user) {
-        navigate("/");
-      }
+    //   if (signOut && !user) {
+    //     navigate("/");
+    //   }
       if (data) {
         const cleanContent = helpers.contentfulClean(data);
         const aux = getDataByGenera(cleanContent);
@@ -44,7 +44,7 @@ function Home() {
   if (isLoading) {
     return (
       <div className="bg-black/90 h-full w-full">
-        <div className="relativez-10">
+        <div className="relative z-10">
           <HomeNavBar />
         </div>
         <div

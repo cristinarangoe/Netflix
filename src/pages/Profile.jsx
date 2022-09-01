@@ -23,7 +23,7 @@ export default function Profile() {
         i++;
       }
       if (i < selected.length){
-        if(i == fetchedData.Tipo_Cuenta-1){
+        if(i === fetchedData.Tipo_Cuenta-1){
           alert("Ya tienes este plan");
           return;
         }
