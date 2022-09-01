@@ -1,14 +1,16 @@
 import React from "react";
 import { useForm } from "react-hook-form";
 import {  useNavigate } from "react-router-dom";
-import useContentfulGenres from "../hooks/useContentfulGenres";
+import {createMovie} from '../utils/contentfulDataHelpers';
+
 
 export default function FormAddContentMovie({genres}) {
- 
 
   const { register, handleSubmit } = useForm();
   const navigate = useNavigate();
-  const onSubmit = (data) => alert(JSON.stringify(data));
+  const onSubmit = (data) => {
+      createMovie(data).then(e => console.log(e));
+    };
   
   return (
     <form
@@ -40,10 +42,10 @@ export default function FormAddContentMovie({genres}) {
         </div>
         <div>
           <label className="text-white ml-0 text-lg" htmlFor="descripcion">
-            Imagen
+            URL Imagen
           </label>
           <input
-            placeholder="Descripción"
+            placeholder="URL Imagen"
             {...register("imagen", { required: true })}
             className="w-full p-[10px] h-[48px] my-[10px] bg-gray-300 placeholder:text-black border border-gray-200 rounded-md"
             type="text"
@@ -68,7 +70,7 @@ export default function FormAddContentMovie({genres}) {
             className="w-full p-[10px] h-[48px] my-[10px] bg-gray-300 placeholder:text-black border border-gray-200 rounded-md"
           >
             {genres.items.map((g,key) => 
-            <option key={key} value={g.fields.name}>
+            <option key={key} value={g.sys.id}>
               {g.fields.name}
             </option>
             )}
@@ -83,7 +85,7 @@ export default function FormAddContentMovie({genres}) {
             className="w-full p-[10px] h-[48px] my-[10px] bg-gray-300 placeholder:text-black border border-gray-200 rounded-md"
           >
               {genres.items.map((g,key) => 
-            <option key={key} value={g.fields.name}>
+            <option key={key} value={g.sys.id}>
               {g.fields.name}
             </option>
             )}

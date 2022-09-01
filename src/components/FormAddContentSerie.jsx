@@ -62,7 +62,7 @@ export default function FormAddContentSerie({genres}) {
             className="w-full p-[10px] h-[48px] my-[10px] bg-gray-300 placeholder:text-black border border-gray-200 rounded-md"
           >
               {genres.items.map((g,key) => 
-            <option key={key} value={g.fields.name}>
+            <option key={key} value={g.sys.id}>
               {g.fields.name}
             </option>
             )}
@@ -83,7 +83,7 @@ export default function FormAddContentSerie({genres}) {
             className="w-full p-[10px] h-[48px] my-[10px] bg-gray-300 placeholder:text-black border border-gray-200 rounded-md"
           >
             {genres.items.map((g,key) => 
-            <option key={key} value={g.fields.name}>
+            <option key={key} value={g.sys.id}>
               {g.fields.name}
             </option>
             )}s

@@ -27,9 +27,9 @@ const ContentfulHelper = {
     }
   },
 
-  async createEntry(movieData) {
+  async createEntry(contentTypeId,data) {
     try {
-      const entry = await this.environment.then(e => e.createEntry('pelicula', { fields: movieData }));
+      const entry = await this.environment.then(e => e.createEntry(contentTypeId, { fields: data }));
       return entry
     } catch (e) {
       throw new Error('error creating movie entry:' + e);
