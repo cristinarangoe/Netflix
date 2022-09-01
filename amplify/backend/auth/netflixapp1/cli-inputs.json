@@ -3,8 +3,8 @@
   "cognitoConfig": {
     "identityPoolName": "testAuthIdentityPool",
     "allowUnauthenticatedIdentities": false,
-    "resourceNameTruncated": "netfli39696c52",
-    "userPoolName": "Netflixapp",
+    "resourceNameTruncated": "netflica80fa13",
+    "userPoolName": "netflixapp1",
     "autoVerifiedAttributes": [
       "email"
     ],
@@ -20,9 +20,7 @@
     "passwordPolicyMinLength": 8,
     "passwordPolicyCharacters": [
       "Requires Lowercase",
-      "Requires Numbers",
-      "Requires Symbols",
-      "Requires Uppercase"
+      "Requires Numbers"
     ],
     "requiredAttributes": [
       "family_name",
@@ -33,10 +31,10 @@
     "userpoolClientRefreshTokenValidity": 30,
     "userpoolClientWriteAttributes": [],
     "userpoolClientReadAttributes": [],
-    "userpoolClientLambdaRole": "Netfli39696c52_userpoolclient_lambda_role",
+    "userpoolClientLambdaRole": "netflica80fa13_userpoolclient_lambda_role",
     "userpoolClientSetAttributes": false,
-    "sharedId": "39696c52",
-    "resourceName": "Netflixapp",
+    "sharedId": "ca80fa13",
+    "resourceName": "netflixapp1",
     "authSelections": "identityPoolAndUserPool",
     "serviceName": "Cognito",
     "usernameAttributes": [
@@ -49,7 +47,7 @@
     "thirdPartyAuth": false,
     "authProviders": [],
     "hostedUI": true,
-    "hostedUIDomainName": "2pczucn9cf40",
+    "hostedUIDomainName": "mi4405wep6pd",
     "authProvidersUserPool": [
       "Facebook",
       "Google"
@@ -57,20 +55,6 @@
     "hostedUIProviderMeta": "[{\"ProviderName\":\"Facebook\",\"authorize_scopes\":\"public_profile\",\"AttributeMapping\":{\"family_name\":\"last_name\",\"given_name\":\"first_name\",\"username\":\"id\"}},{\"ProviderName\":\"Google\",\"authorize_scopes\":\"openid profile\",\"AttributeMapping\":{\"family_name\":\"family_name\",\"given_name\":\"given_name\",\"username\":\"sub\"}}]",
     "oAuthMetadata": "{\"AllowedOAuthFlows\":[\"code\"],\"AllowedOAuthScopes\":[\"phone\",\"email\",\"openid\",\"profile\",\"aws.cognito.signin.user.admin\"],\"CallbackURLs\":[\"http://localhost:3000/home\"],\"LogoutURLs\":[\"http://localhost:3000/\"]}",
     "usernameCaseSensitive": false,
-    "useEnabledMfas": true,
-    "authRoleArn": {
-      "Fn::GetAtt": [
-        "AuthRole",
-        "Arn"
-      ]
-    },
-    "unauthRoleArn": {
-      "Fn::GetAtt": [
-        "UnauthRole",
-        "Arn"
-      ]
-    },
-    "breakCircularDependency": true,
-    "dependsOn": []
+    "useEnabledMfas": true
   }
 }
