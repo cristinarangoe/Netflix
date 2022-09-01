@@ -12,7 +12,7 @@ export default function Cart() {
     const response = await orderService.saveOrder(buyItems.items, userData.data)
 
   }
-  console.log("hola cristina")
+
   return (
 
     <Dialog.Root >

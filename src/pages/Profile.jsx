@@ -11,14 +11,13 @@ export default function Profile() {
 
   const navigate = useNavigate()
   const userData = useSelector(state => state.userData)
-  
 
   useEffect(()=>{
     userDBServices.getUserPlan()
   },[])
 
     const fetchedData = {
-        ID: JSON.parse(userData.data.attributes.identities)[0].userId,
+        ID: userData.data.username,
         Tipo_Cuenta: 1,
         Given_Name: userData.data.attributes.given_name,
         Family_Name: userData.data.attributes.family_name,

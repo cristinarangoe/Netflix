@@ -27,15 +27,16 @@ function Home() {
   useEffect(() => {
     //traer los datos y limpiandolos
     useContentful.getData().then((data) => {
-    //   if (signOut && !user) {
-    //     navigate("/");
-    //   }
+      if (signOut && !user) {
+        navigate("/");
+      }
       if (data) {
         const cleanContent = helpers.contentfulClean(data);
         const aux = getDataByGenera(cleanContent);
         setContent(aux);
         setLoading(false);
       }
+      console.log(user)
       dispatch(toggleAddData(user))
     });
     

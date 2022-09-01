@@ -10,6 +10,12 @@ import { toggleAddItem } from "../storeData/buyItems";
 
 export default function MediaDialog({ content }) {
 
+    const [ratings, setRatings] = useState([" text-yellow-400",
+    " text-yellow-400",
+    " text-yellow-400",
+    " text-yellow-400",
+    " text-yellow-400"])
+
     const buyItems = useSelector(state=>state.buyItems)
     const dispatch = useDispatch();
     const gaTracker = () => {
@@ -25,6 +31,17 @@ export default function MediaDialog({ content }) {
     const buyMedia = () =>{
         let item = {id: content.id, name: content.name, image: content.image, price: content.price, type:content.type}
         dispatch(toggleAddItem(item))
+    }
+
+    const handleRating =(index)=>{
+        let yellowStars = new Array(index+1).fill(" text-yellow-400")
+        let grayStars = new Array(ratings.length-index-1).fill(" text-gray-300 dark:text-gray-500")
+        setRatings(yellowStars.concat(grayStars))
+        console.log(ratings)
+    }
+
+    const postRating =() =>{
+        console.log(ratings.filter(x => x==" text-yellow-400").length)
     }
 
   return (
@@ -72,6 +89,14 @@ export default function MediaDialog({ content }) {
             
                        <span className="text-white align font-bold mt-2 text-xl">Precio: <span className="text-red-600 align ">{content.price}$</span></span>
                        <button className="text-white align bg-red-600" onClick={buyMedia} >Añadir al carrito</button>
+                </div>
+                <div class="flex items-center">
+                    <svg aria-hidden="true" name="0" onClick={()=>handleRating(0)} class={"w-5 h-5" + ratings[0]} fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg"><title>First star</title><path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z"></path></svg>
+                    <svg aria-hidden="true" name="1" onClick={()=>handleRating(1)} class={"w-5 h-5" + ratings[1]} fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg"><title>Second star</title><path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z"></path></svg>
+                    <svg aria-hidden="true" name="2" onClick={()=>handleRating(2)} class={"w-5 h-5" + ratings[2]} fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg"><title>Third star</title><path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z"></path></svg>
+                    <svg aria-hidden="true" name="3" onClick={()=>handleRating(3)} class={"w-5 h-5" + ratings[3]} fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg"><title>Fourth star</title><path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z"></path></svg>
+                    <svg aria-hidden="true" name="4" onClick={()=>handleRating(4)} class={"w-5 h-5" + ratings[4]} fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg"><title>Fifth star</title><path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z"></path></svg>
+                    <svg onClick={postRating} class="w-6 h-6 bg-lime-700 rounded-md ml-2" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path></svg>
                 </div>
                 <div>
                     {'episodes' in content &&
