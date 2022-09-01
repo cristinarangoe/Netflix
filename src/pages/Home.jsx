@@ -22,32 +22,39 @@ function Home() {
   const {user, signOut} = useAuthenticator();
   global.cartItems = []
 
+  
   const dispatch = useDispatch();
   
   useEffect(() => {
     //traer los datos y limpiandolos
-    useContentful.getData().then((data) => {
-      if (signOut && !user) {
-        navigate("/");
-      }
+    const fetchContentfulData = async () =>{
+      let data = await useContentful.getData()
       if (data) {
         const cleanContent = helpers.contentfulClean(data);
         const aux = getDataByGenera(cleanContent);
         setContent(aux);
         setLoading(false);
       }
+    }
+    const loggedIn = async () =>{
+      if (signOut && !user) {
+        navigate("/");
+      }
       console.log(user)
       dispatch(toggleAddData(user))
-    });
-    
+    }
+    fetchContentfulData();
+    loggedIn()
   }, [isLoading, user, signOut, navigate]);
 
   if (isLoading) {
     return (
       <div className="bg-black/90 h-full w-full">
+      
         <div className="relative z-10">
           <HomeNavBar />
         </div>
+        
         <div
           role="status"
           className="flex justify-center items-center h-screen w-screen"
