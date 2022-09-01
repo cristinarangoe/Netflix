@@ -2,7 +2,7 @@ import React from "react";
 
 export default function Footer({ estilo, estiloSm }) {
   return (
-    <div className={`${estiloSm} md:${estilo} px-5 md:px-32 md:pb-5 border-t border-gray-300 pb-5`}>
+    <div className={`${estiloSm} md:${estilo} px-5 md:px-32 md:pb-5 border-t border-gray-300 pb-5 `}>
       <h1 className="text-gray-500 font-medium text-base py-5">Preguntas? 01 800 917 1564</h1>
       <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-2 md:gap-4 text-sm text-gray-500 ">
         <p>Preguntas frecuentes</p>

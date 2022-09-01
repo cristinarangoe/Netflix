@@ -44,7 +44,7 @@ function Home() {
   if (isLoading) {
     return (
       <div className="bg-black/90 h-full w-full">
-        <div className="relativez-10">
+        <div className="relative z-10">
           <HomeNavBar />
         </div>
         <div

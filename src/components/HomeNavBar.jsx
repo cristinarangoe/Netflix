@@ -5,15 +5,15 @@ import Dropdown from "./Dropdown";
 import { useAuthenticator } from "@aws-amplify/ui-react";
 import Cart from "./Cart";
 import { useNavigate } from "react-router-dom";
-export default function () {
-  const {user, signOut} = useAuthenticator();
-  const navigate = useNavigate()
+export default function HomeNavBar() {
+  const { user, signOut } = useAuthenticator();
+  const navigate = useNavigate();
 
   return (
     <div className="">
       <div className="flex flex-row items-center">
         <NavBarLogo />
-        <div className="ml-5 hidden sm:hidden md:inline">
+        <div className="flex flex-row ml-5 hidden sm:hidden md:inline">
           <ul className="flex flex-row ">
             <li className="pr-5" key="home">
               <Link
@@ -39,29 +39,33 @@ export default function () {
                 Peliculas
               </Link>
             </li>
-            <div className="pr-5 absolute right-0 flex mr-3">
-            <li className="mr-10 self-center" key="profile">
-              
-              <svg onClick={()=>navigate("/profile")} className="w-9 h-9 cursor-pointer" fill="none" color="white" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M5.121 17.804A13.937 13.937 0 0112 16c2.5 0 4.847.655 6.879 1.804M15 10a3 3 0 11-6 0 3 3 0 016 0zm6 2a9 9 0 11-18 0 9 9 0 0118 0z" /></svg>
-          
-            </li>
-            <li className="mr-10 self-center" key="cart">
-              <Cart/>
-            </li>
-            <li className="ml-10" key="movies">
-            
-              <a
-                onClick={signOut}
-                className="text-gray-300 text-xl font-medium hover:text-white mr-3"
-              >
-                Cerrar sesión
-              </a>
-            </li>
-            </div>
           </ul>
         </div>
-        <div className="ml-5 inline sm:inline md:hidden">
+        <div className="flex flex-row ml-5 hidden sm:hidden md:inline absolute right-0">
+          <ul className="flex flex-row">
+            <li className="m-0 pt-1" key="profile">
+              <Link to="/profile" className="text-xl">
+                <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth="1.5" stroke="white" className="w-7">
+                  <path strokeLinecap="round" strokeLinejoin="round" d="M17.982 18.725A7.488 7.488 0 0012 15.75a7.488 7.488 0 00-5.982 2.975m11.963 0a9 9 0 10-11.963 0m11.963 0A8.966 8.966 0 0112 21a8.966 8.966 0 01-5.982-2.275M15 9.75a3 3 0 11-6 0 3 3 0 016 0z" />
+                </svg>
+              </Link>
+            </li>
+            <li className="px-5 mt-1" key="cart">
+              <Cart />
+            </li>
+            <li className="" key="movies">
+              <button
+                onClick={signOut}
+                className="text-gray-300 text-xl font-medium hover:text-white mr-3 p-0"
+              >
+                Cerrar sesión
+              </button>
+            </li>
+          </ul>
+        </div>
+        <div className="flex flex-row ml-5 inline sm:inline md:hidden">
           <Dropdown />
+          <Cart/>
         </div>
       </div>
     </div>

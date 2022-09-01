@@ -2,12 +2,13 @@ import React from "react";
 import * as DropdownMenu from "@radix-ui/react-dropdown-menu";
 import { Link } from "react-router-dom";
 import { useNavigate } from "react-router-dom";
+import Cart from "./Cart";
 
 export default function Dropdown() {
 
   const navigate = useNavigate();
-  const logOut = () =>{
-    
+  const logOut = () => {
+
     localStorage.removeItem("user");
     navigate("/")
   }
@@ -66,14 +67,25 @@ export default function Dropdown() {
             </Link>
           </DropdownMenu.Item>
           <DropdownMenu.Item
-            key="Series"
+            key="perfil"
+            className=" border-none cursor-default focus:outline-none "
+          >
+            <Link
+              to="/profile"
+              className="text-gray-300 text-xl font-medium no-underline hover:text-gray-300"
+            >
+              Perfil del usuario
+            </Link>
+          </DropdownMenu.Item>
+          <DropdownMenu.Item
+            key="logout"
             className=" border-none cursor-default focus:outline-none "
           >
             <a
               className="text-gray-300 text-xl font-medium no-underline hover:text-gray-300"
               onClick={logOut}
             >
-              Cerrar SesiÃ³n
+              Cerrar Sesión
             </a>
           </DropdownMenu.Item>
         </DropdownMenu.Content>
