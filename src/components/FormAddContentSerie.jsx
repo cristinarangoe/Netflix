@@ -1,11 +1,14 @@
 import React from "react";
 import { useForm } from "react-hook-form";
 import { useNavigate } from "react-router-dom";
+import {createSerie} from '../utils/contentfulDataHelpers';
 
 export default function FormAddContentSerie({genres}) {
   const { register, handleSubmit } = useForm();
   const navigate = useNavigate();
-  const onSubmit = (data) => alert(JSON.stringify(data));
+  const onSubmit = (data) => {
+     createSerie(data).then(e => console.log(e))
+  };
 
   return (
     <form onSubmit={handleSubmit(onSubmit)} className=" mx-8">
