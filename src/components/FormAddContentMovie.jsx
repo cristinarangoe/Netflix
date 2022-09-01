@@ -1,8 +1,15 @@
 import React from "react";
 import { useForm } from "react-hook-form";
-import { useNavigate } from "react-router-dom";
+import { generatePath, useNavigate } from "react-router-dom";
+import useContentfulGenres from "../hooks/useContentfulGenres";
 
 export default function FormAddContentMovie() {
+  const {data:genreData,isError,isLoading} = useContentfulGenres();
+  console.log('error:',isError);
+  console.log('loading:',isLoading);
+  if (genreData) {
+    genreData.items.map(g => console.log(g.fields.name))
+  }
   const { register, handleSubmit } = useForm();
   const navigate = useNavigate();
   const onSubmit = (data) => alert(JSON.stringify(data));
@@ -64,12 +71,11 @@ export default function FormAddContentMovie() {
             {...register("gender1")}
             className="w-full p-[10px] h-[48px] my-[10px] bg-gray-300 placeholder:text-black border border-gray-200 rounded-md"
           >
-            <option value="Drama">Drama</option>
-            <option value="TvDrama">Tv Drama</option>
-            <option value="RomanticTVDrama">Romantic TV Drama</option>
-            <option value="Comedia">Comedia</option>
-            <option value="Epics">Epics</option>
-            <option value="MoviesBasedOnBooks">Movies Based On Books</option>
+            {isLoading ? <p>loading...</p> : genreData.items.map((g,key) => 
+            <option key={key} value={g.fields.name}>
+              {g.fields.name}
+            </option>
+            )}
           </select>
         </div>
         <div>
