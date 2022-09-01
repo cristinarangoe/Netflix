@@ -65,6 +65,17 @@ export default function Dropdown() {
               Series
             </Link>
           </DropdownMenu.Item>
+        <DropdownMenu.Item
+            key="adicionarcontenido"
+            className=" border-none cursor-default focus:outline-none my-3"
+          >
+            <Link
+              to="/addcontent"
+              className="text-gray-300 text-xl font-medium no-underline hover:text-gray-300"
+            >
+              Adicionar contenido
+            </Link>
+          </DropdownMenu.Item>
           <DropdownMenu.Item
             key="Series"
             className=" border-none cursor-default focus:outline-none "
@@ -73,7 +84,7 @@ export default function Dropdown() {
               className="text-gray-300 text-xl font-medium no-underline hover:text-gray-300"
               onClick={logOut}
             >
-              Cerrar SesiÃ³n
+              Cerrar Sesión
             </a>
           </DropdownMenu.Item>
         </DropdownMenu.Content>

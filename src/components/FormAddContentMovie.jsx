@@ -55,7 +55,7 @@ export default function FormAddContentMovie({genres}) {
           </label>
           <input
             {...register("adultos", { required: false })}
-            className="ml-0 h-[25px] my-[10px] bg-gray-300  border-gray-200 rounded-md"
+            className="ml-0 h-[25px] my-auto ml-0 bg-gray-300  border-gray-200 rounded-md right-0"
             type="checkbox"
           />
         </div>

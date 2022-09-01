@@ -45,15 +45,15 @@ export default function AddContent() {
   )
   
   return (
-    <div className=" bg-black bg-cover h-full w-full">
+    <div className=" md:bg-[url('/public/img/ImgInicio.jpg')] bg-black bg-cover h-full w-full">
       <div className="relative z-10 md:bg-black/80">
         <HomeNavBar/>
       </div>
-      <div className="flex flex-col justify-center md:max-w-[640px] mx-auto mt-3 md:my-8 md:rounded-lg bg-black border"> 
+      <div className="flex flex-col justify-center md:max-w-[640px] mx-auto mt-3 md:my-8 md:rounded-lg bg-black/80"> 
         <Tabs.Root defaultValue="tab1" orientation="vertical" className='w-full h-full rounded-md'>
-          <Tabs.List aria-level="tabs example" className='grid grid-cols-2 w-full border-b-2 border-white'>
-            <Tabs.Trigger value="tab1" className={`text-3xl text-center ${active.tab1 ? 'text-white bg-red-600 rounded-none py-2': 'bg-black text-white rounded-none' }`}  onClick={() => changeTabState("tab1")}>Pelicula</Tabs.Trigger>
-            <Tabs.Trigger value="tab2" className={`text-3xl text-center ${active.tab2 ? 'text-white bg-red-600 rounded-none py-2': 'bg-black text-white rounded-none' }`} onClick={() => changeTabState("tab2")}>Serie</Tabs.Trigger>
+          <Tabs.List aria-level="1" className='grid grid-cols-2 w-full border-b-2 border-white'>
+            <Tabs.Trigger value="tab1" className={`text-3xl text-center ${active.tab1 ? 'text-white bg-red-600  py-2': 'bg-black text-white rounded-none' }`}  onClick={() => changeTabState("tab1")}>Pelicula</Tabs.Trigger>
+            <Tabs.Trigger value="tab2" className={`text-3xl text-center ${active.tab2 ? 'text-white bg-red-600  py-2': 'bg-black text-white rounded-none' }`} onClick={() => changeTabState("tab2")}>Serie</Tabs.Trigger>
           </Tabs.List>
           <Tabs.Content value="tab1">
             <h3 className="text-white text-2xl text-center my-5 px-3">¿Cuál película te gustaría ver en nuestro portafolio?</h3>
