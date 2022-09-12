@@ -8,6 +8,7 @@ import BuyMediaContext from "../context/BuyMediaContext";
 import { useSelector, useDispatch } from "react-redux";
 import { toggleAddItem } from "../storeData/buyItems";
 import ratingService from "../services/ratings";
+import orderService from "../services/orderService";
 
 export default function MediaDialog({ content, onClick }, ) {
 
@@ -17,7 +18,13 @@ export default function MediaDialog({ content, onClick }, ) {
     " text-yellow-400",
     " text-yellow-400"])
 
+    const [numberRating, setNumberRating] = useState(5)
+
+    const [boughtStatus, setBoughtStatus] = useState(false)
+
     const buyItems = useSelector(state=>state.buyItems)
+    const userData = useSelector(state => state.userData)
+
     const dispatch = useDispatch();
     const gaTracker = () => {
         content.genres.map((genre)=>{
@@ -28,6 +35,7 @@ export default function MediaDialog({ content, onClick }, ) {
             }) 
         })
     }
+
 
     // useEffect(()=>{
     //     const getRating= async() =>{
@@ -46,19 +54,30 @@ export default function MediaDialog({ content, onClick }, ) {
     }
 
     const handleRating =(index)=>{
+        setNumberRating(index)
         let yellowStars = new Array(index).fill(" text-yellow-400")
         let grayStars = new Array(ratings.length-index).fill(" text-gray-300 dark:text-gray-500")
         setRatings(yellowStars.concat(grayStars))
     }
 
     const postRating =() =>{
-        console.log(ratings.filter(x => x==" text-yellow-400").length)
+        let rating = ratings.filter(x => x==" text-yellow-400").length
+        ratingService.createRating(content.id, content.type,userData.data.username, rating)
         
     }
 
-    const viewRating = async () =>{
-        // let data = ratingService.viewRating();
-        // handleRating(data);
+    const handleModalLoad = async ()=>{
+        gaTracker();
+        ratingService.getMovie(content.id, content.name,content.type, content.price)
+        let rating = await ratingService.getRating(userData.data.username, content.id, content.type)
+        console.log(rating)
+        const boughtStatus = await orderService.getMediaBoughtStatus(userData.data.username, content.id,content.type)
+        setBoughtStatus(boughtStatus)
+        if (rating.length){
+            handleRating(rating[0].Calificacion)
+            return
+        }
+        
         
     }
 
@@ -66,7 +85,7 @@ export default function MediaDialog({ content, onClick }, ) {
     <BuyMediaContext.Provider value ={global.cartItems}>
     <Dialog.Root>
       <Dialog.Trigger >
-        <a onClick={gaTracker}><MediaItem name={content.name} image={content.image} /></a>
+        <a onClick={handleModalLoad}><MediaItem name={content.name} image={content.image} /></a>
       </Dialog.Trigger>
 
       <Dialog.Portal>
@@ -106,7 +125,7 @@ export default function MediaDialog({ content, onClick }, ) {
                 <div className="flex justify-center grid grid-cols-2">
             
                        <span className="text-white align font-bold mt-2 text-xl">Precio: <span className="text-red-600 align ">{content.price}$</span></span>
-                       <button className="text-white align bg-red-600" onClick={buyMedia} >Añadir al carrito</button>
+                      {boughtStatus?  <span className="text-lime-500 align justify-self-center"  >Comprado</span>:  <button className="text-white align bg-red-600" onClick={buyMedia} >Añadir al carrito</button>} 
                 </div>
                 <div class="flex items-center">
                     <svg aria-hidden="true" name="0" onClick={()=>handleRating(1)} class={"w-5 h-5" + ratings[0]} fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg"><title>First star</title><path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z"></path></svg>
