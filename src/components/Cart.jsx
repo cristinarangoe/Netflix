@@ -1,16 +1,30 @@
 import React from 'react'
 import * as Dialog from "@radix-ui/react-dialog";
 
-import { useSelector } from "react-redux";
+import { useSelector, useDispatch } from "react-redux";
 import orderService from '../services/orderService';
+import {emptyItems} from '../storeData/buyItems'
+
 
 
 export default function Cart() {
   const buyItems = useSelector(state => state.buyItems)
   const userData = useSelector(state => state.userData)
+  const dispatch = useDispatch();
   const handleOrderService = async () => {
-    const response = await orderService.saveOrder(buyItems.items, userData.data)
+    if(buyItems.items.length){
+      const response = await orderService.saveOrder(buyItems.items, userData.data)
+      if (response){
+        alert('Compra exitosa!')
+        emptyCart()
+        return;
+    }
+    alert('hubo un error en el sistema, intenta mas tarde')
+    }
+  }
 
+  const emptyCart = () =>{
+    dispatch(emptyItems())
   }
 
   return (
@@ -47,6 +61,7 @@ export default function Cart() {
             <div className='flex flex-row justify-center grid grid-cols-2 mt-5 pt-3 border-t-2 border-white'>
               <span className="text-white text-2xl align-middle font-bold text-red-600 my-auto">Total {buyItems.items.reduce((sum, media) => { return sum + media.price }, 0)}$</span>
               <button onClick={handleOrderService} className="border-2 border-red-600 bg-color-black text-xl">Completar orden</button>
+              <button onClick={emptyCart} className="border-2 border-red-600 bg-color-black text-xl ml-2">Vaciar orden</button>
             </div>
           </div>
 

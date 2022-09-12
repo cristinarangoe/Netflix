@@ -11,8 +11,7 @@ const orderService ={
         let data = {usuariosId: userData.username, content: media}
         console.log(data)
         const response = await axios.post(url+'comprarcontenido/', data);
-        console.log(response.data)
-        return response.data;
+        return response.data[0].Saved;
     },
 
     async getMediaBoughtStatus(userId, mediaId, type){
