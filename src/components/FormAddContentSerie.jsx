@@ -1,14 +1,23 @@
-import React from "react";
-import { useForm } from "react-hook-form";
+import React, { useState } from "react";
+import { useForm, useFieldArray } from "react-hook-form";
 import { useNavigate } from "react-router-dom";
-import {createSerie} from '../utils/contentfulDataHelpers';
+import { createSerie } from "../utils/contentfulDataHelpers";
 
-export default function FormAddContentSerie({genres}) {
-  const { register, handleSubmit } = useForm();
+export default function FormAddContentSerie({ genres }) {
+  let [nFields, setNFields] = useState(1);
+
+  const { register, handleSubmit, control } = useForm();
+  const { fields, remove, insert } = useFieldArray({
+    control,
+    name: "episodes",
+  });
+
   const navigate = useNavigate();
   const onSubmit = (data) => {
      createSerie(data).then(e => console.log(e))
   };
+
+  //   const episodesFields = { nombre, descripcion, imagen, duracion };
 
   return (
     <form onSubmit={handleSubmit(onSubmit)} className=" mx-8">
@@ -64,11 +73,11 @@ export default function FormAddContentSerie({genres}) {
             {...register("gender1")}
             className="w-full p-[10px] h-[48px] my-[10px] bg-gray-300 placeholder:text-black border border-gray-200 rounded-md"
           >
-              {genres.items.map((g,key) => 
-            <option key={key} value={g.sys.id}>
-              {g.fields.name}
-            </option>
-            )}
+            {genres.items.map((g, key) => (
+              <option key={key} value={g.sys.id}>
+                {g.fields.name}
+              </option>
+            ))}
             {/* <option value="Drama">Drama</option>
             <option value="TvDrama">Tv Drama</option>
             <option value="RomanticTVDrama">Romantic TV Drama</option>
@@ -85,11 +94,12 @@ export default function FormAddContentSerie({genres}) {
             {...register("gender2")}
             className="w-full p-[10px] h-[48px] my-[10px] bg-gray-300 placeholder:text-black border border-gray-200 rounded-md"
           >
-            {genres.items.map((g,key) => 
-            <option key={key} value={g.sys.id}>
-              {g.fields.name}
-            </option>
-            )}s
+            {genres.items.map((g, key) => (
+              <option key={key} value={g.sys.id}>
+                {g.fields.name}
+              </option>
+            ))}
+            s
           </select>
         </div>
         <div>
@@ -137,7 +147,94 @@ export default function FormAddContentSerie({genres}) {
           />
         </div>
       </div>
-      <div className=" border-t-2 mt-3 pt-2 ">
+      <ul>
+        {fields.map((item, index) => {
+          return (
+            <li key={item.id} className="border-t-2 mt-3 pt-2 ">
+              <h3 className="text-red-500 text-xl pb-3 font-semibold">
+                Información acerca del episodio {nFields}:
+              </h3>
+              <div className="flex flex-col md:grid md:grid-cols-2 md:gap-x-5 md:gap-y-2">
+                <div>
+                  <label
+                    className="text-white ml-0 text-lg"
+                  >
+                    Nombre
+                  </label>
+                  <input
+                    placeholder="Nombre"
+                    {...register(`episodes.${index}.nombre`, {
+                      required: true,
+                    })}
+                    className="w-full p-[10px] h-[48px] my-[10px] bg-gray-300 placeholder:text-black border border-gray-200 rounded-md"
+                    type="text"
+                  />
+                </div>
+                <div>
+                  <label
+                    className="text-white ml-0 text-lg"
+                  >
+                    Descripción
+                  </label>
+                  <input
+                    placeholder="Descripción"
+                    {...register(`episodes.${index}.descripcion`, {
+                      required: true,
+                    })}
+                    className="w-full p-[10px] h-[48px] my-[10px] bg-gray-300 placeholder:text-black border border-gray-200 rounded-md"
+                    type="text"
+                  />
+                </div>
+                <div>
+                  <label
+                    className="text-white ml-0 text-lg"
+                  >
+                    Imagen
+                  </label>
+                  <input
+                    placeholder="Imágen"
+                    {...register(`episodes.${index}.imagen`, {
+                      required: true,
+                    })}
+                    className="w-full p-[10px] h-[48px] my-[10px] bg-gray-300 placeholder:text-black border border-gray-200 rounded-md"
+                    type="text"
+                  />
+                </div>
+                <div>
+                  <label
+                    className="text-white ml-0 text-lg p-3"
+                  >
+                    Duración
+                  </label>
+                  <input
+                    placeholder="Duracion"
+                    {...register(`episodes.${index}.duracion`, {
+                      required: true,
+                    })}
+                    className="w-full p-[10px] h-[48px] my-[10px] bg-gray-300 placeholder:text-black border border-gray-200 rounded-md"
+                    type="text"
+                  />
+                </div>
+              </div>
+            </li>
+          );
+        })}
+      </ul>
+      <button
+        className="bg-white"
+        type="button"
+        onClick={() => {
+          insert(parseInt("2", 10), {
+            [`nombre`]: "",
+            [`descripcion`]: "",
+            [`imagen`]: "",
+            [`duracion`]: "",
+          });
+        }}
+      >
+        Insertar Capitulo
+      </button>
+      {/* <div className=" border-t-2 mt-3 pt-2 ">
         <h3 className="text-red-500 text-xl pb-3 font-semibold">Información acerca del episodio 1:</h3>
         <div className="flex flex-col md:grid md:grid-cols-2 md:gap-x-5 md:gap-y-2">
         <div>
@@ -286,7 +383,7 @@ export default function FormAddContentSerie({genres}) {
         </div>
         </div>
         
-      </div>
+      </div> */}
       <button className="min-h-[48px] px-[1em] py-[0.25em] mx-auto my-3 rounded-[2px] bg-red-600 mt-[0.5em] text-center flex flex-row items-center text-white">
         <span className="text-[1rem]">Adicionar</span>
         <span>
