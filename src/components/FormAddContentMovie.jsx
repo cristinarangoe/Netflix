@@ -1,22 +1,20 @@
-import React from "react";
+import React, {useState} from "react";
 import { useForm } from "react-hook-form";
-import {  useNavigate } from "react-router-dom";
-import {createMovie} from '../utils/contentfulDataHelpers';
+import { useNavigate } from "react-router-dom";
+import { createMovie } from "../utils/contentfulDataHelpers";
+import * as Toast from "@radix-ui/react-toast";
 
-
-export default function FormAddContentMovie({genres}) {
-
+export default function FormAddContentMovie({ genres }) {
   const { register, handleSubmit } = useForm();
   const navigate = useNavigate();
   const onSubmit = (data) => {
-      createMovie(data).then(e => console.log(e));
-    };
+    createMovie(data).then((e) => console.log(e));
+  };
   
+    const [open, setOpen] = useState(false);
+
   return (
-    <form
-      onSubmit={handleSubmit(onSubmit)}
-      className=" mx-8"
-    >
+    <form onSubmit={handleSubmit(onSubmit)} className=" mx-8">
       <div className="flex flex-col md:grid md:grid-cols-2 md:gap-x-5 md:gap-y-2">
         <div>
           <label className="text-white ml-0 text-lg" htmlFor="nombre">
@@ -69,11 +67,11 @@ export default function FormAddContentMovie({genres}) {
             {...register("gender1")}
             className="w-full p-[10px] h-[48px] my-[10px] bg-gray-300 placeholder:text-black border border-gray-200 rounded-md"
           >
-            {genres.items.map((g,key) => 
-            <option key={key} value={g.sys.id}>
-              {g.fields.name}
-            </option>
-            )}
+            {genres.items.map((g, key) => (
+              <option key={key} value={g.sys.id}>
+                {g.fields.name}
+              </option>
+            ))}
           </select>
         </div>
         <div>
@@ -84,11 +82,11 @@ export default function FormAddContentMovie({genres}) {
             {...register("gender2")}
             className="w-full p-[10px] h-[48px] my-[10px] bg-gray-300 placeholder:text-black border border-gray-200 rounded-md"
           >
-              {genres.items.map((g,key) => 
-            <option key={key} value={g.sys.id}>
-              {g.fields.name}
-            </option>
-            )}
+            {genres.items.map((g, key) => (
+              <option key={key} value={g.sys.id}>
+                {g.fields.name}
+              </option>
+            ))}
             {/* <option value="Drama">Drama</option>
             <option value="TvDrama">Tv Drama</option>
             <option value="RomanticTVDrama">Romantic TV Drama</option>
@@ -142,25 +140,66 @@ export default function FormAddContentMovie({genres}) {
           />
         </div>
       </div>
-      <button className="min-h-[48px] px-[1em] py-[0.25em] mx-auto my-3 rounded-[2px] bg-red-600 mt-[0.5em] text-center flex flex-row items-center text-white">
-        <span className="text-[1rem]">Adicionar</span>
-        <span>
-          <svg
-            xmlns="http://www.w3.org/2000/svg"
-            className="h-6 w-6"
-            fill="none"
-            viewBox="0 0 24 24"
-            stroke="currentColor"
-            strokeWidth={1}
-          >
-            <path
-              strokeLinecap="round"
-              strokeLinejoin="round"
-              d="M9 5l7 7-7 7"
-            />
-          </svg>
-        </span>
-      </button>
+
+      <Toast.Provider swipeDirection="right">
+
+        <button
+          className="min-h-[48px] px-[1em] py-[0.25em] mx-auto my-3 rounded-[2px] bg-red-600 mt-[0.5em] text-center flex flex-row items-center text-white"
+          onClick={() => {
+            setOpen(false);
+            setTimeout(5000);
+            setOpen(true);
+          }}
+        >
+          <span className="text-[1rem]">Adicionar</span>
+          <span>
+            <svg
+              xmlns="http://www.w3.org/2000/svg"
+              className="h-6 w-6"
+              fill="none"
+              viewBox="0 0 24 24"
+              stroke="currentColor"
+              strokeWidth={1}
+            >
+              <path
+                strokeLinecap="round"
+                strokeLinejoin="round"
+                d="M9 5l7 7-7 7"
+              />
+            </svg>
+          </span>
+        </button>
+
+        <Toast.Root
+          open={open}
+          onOpenChange={setOpen}
+          className="bg-white text-red-500 px-3 pt-4 font-medium text-xl rounded-md border-2 border-red-500 z-10"
+        >
+          <Toast.Title className="flex flex-row">
+            <span>Pelicula adicionada con éxito!</span>
+            <span> </span>
+            <svg
+              xmlns="http://www.w3.org/2000/svg"
+              fill="none"
+              viewBox="0 0 24 24"
+              stroke-width="3"
+              stroke="currentColor"
+              class="w-6 h-6"
+            >
+              <path
+                stroke-linecap="round"
+                stroke-linejoin="round"
+                d="M4.5 12.75l6 6 9-13.5"
+              />
+            </svg>
+          </Toast.Title>
+          <Toast.Description />
+          <Toast.Action />
+          <Toast.Close />
+        </Toast.Root>
+
+        <Toast.Viewport className="fixed top-3 right-3" />
+      </Toast.Provider>
     </form>
   );
 }
