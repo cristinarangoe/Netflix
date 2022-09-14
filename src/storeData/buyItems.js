@@ -12,9 +12,12 @@ export const buyItemsSlice = createSlice({
             if(state.items.filter(e => e.id === action.payload.id).length == 0){
             state.items = [...state.items, action.payload]
         } 
+        },
+        emptyItems: (state) =>{
+            state.items = []
         }
    }
 })
 
-export const {toggleAddItem} = buyItemsSlice.actions
+export const {toggleAddItem, emptyItems}  = buyItemsSlice.actions
 export default buyItemsSlice.reducer
