@@ -66,6 +66,17 @@ export default function Dropdown() {
               Series
             </Link>
           </DropdownMenu.Item>
+        <DropdownMenu.Item
+            key="adicionarcontenido"
+            className=" border-none cursor-default focus:outline-none my-3"
+          >
+            <Link
+              to="/addcontent"
+              className="text-gray-300 text-xl font-medium no-underline hover:text-gray-300"
+            >
+              Adicionar contenido
+            </Link>
+          </DropdownMenu.Item>
           <DropdownMenu.Item
             key="perfil"
             className=" border-none cursor-default focus:outline-none my-3"

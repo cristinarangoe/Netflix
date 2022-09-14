@@ -12,7 +12,6 @@ export default function Footer({ estilo, estiloSm }) {
         <p>Privacidad</p>
         <p>Información corporativa</p>
       </div>
-
     </div>
   );
 }
