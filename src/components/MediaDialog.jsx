@@ -106,6 +106,7 @@ export default function MediaDialog({ content, onClick }) {
   };
 
   const [open, setOpen] = useState(false);
+  const [openCalificacion, setOpenCalificacion] = useState(false);
 
   return (
     <BuyMediaContext.Provider value={global.cartItems}>
@@ -193,7 +194,7 @@ export default function MediaDialog({ content, onClick }) {
                     >
                       <Toast.Title className="flex flex-row">
                         <span>Producto adicionado </span>
-                        <span>   </span>
+                        <span> </span>
                         <svg
                           xmlns="http://www.w3.org/2000/svg"
                           fill="none"
@@ -279,21 +280,58 @@ export default function MediaDialog({ content, onClick }) {
                   <title>Fifth star</title>
                   <path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z"></path>
                 </svg>
-                <svg
-                  onClick={postRating}
-                  class="w-6 h-6 bg-lime-700 rounded-md ml-2"
-                  fill="none"
-                  stroke="currentColor"
-                  viewBox="0 0 24 24"
-                  xmlns="http://www.w3.org/2000/svg"
-                >
-                  <path
-                    stroke-linecap="round"
-                    stroke-linejoin="round"
-                    stroke-width="2"
-                    d="M5 13l4 4L19 7"
-                  ></path>
-                </svg>
+
+                <Toast.Provider swipeDirection="right">
+                    <button onClick={() => {
+                      setOpenCalificacion(false);
+                      postRating();
+                      setOpenCalificacion(true);
+                    }}>
+                  <svg
+                    class="w-6 h-6 bg-lime-700 rounded-md ml-2"
+                    fill="none"
+                    stroke="currentColor"
+                    viewBox="0 0 24 24"
+                    xmlns="http://www.w3.org/2000/svg"
+                  >
+                    <path
+                      stroke-linecap="round"
+                      stroke-linejoin="round"
+                      stroke-width="2"
+                      d="M5 13l4 4L19 7"
+                    ></path>
+                  </svg>
+                  </button>
+                  <Toast.Root
+                    open={openCalificacion}
+                    onOpenChange={setOpenCalificacion}
+                    className="bg-white text-red-500 px-3 pt-4 font-medium text-xl rounded-md border-2 border-red-500"
+                  >
+                    <Toast.Title className="flex flex-row">
+                      <span>Producto calificado con éxito!</span>
+                      <span> </span>
+                      <svg
+                        xmlns="http://www.w3.org/2000/svg"
+                        fill="none"
+                        viewBox="0 0 24 24"
+                        stroke-width="3"
+                        stroke="currentColor"
+                        class="w-6 h-6"
+                      >
+                        <path
+                          stroke-linecap="round"
+                          stroke-linejoin="round"
+                          d="M4.5 12.75l6 6 9-13.5"
+                        />
+                      </svg>
+                    </Toast.Title>
+                    <Toast.Description />
+                    <Toast.Action />
+                    <Toast.Close />
+                  </Toast.Root>
+
+                  <Toast.Viewport className="absolute top-3 right-3" />
+                </Toast.Provider>
               </div>
               <div>
                 {"episodes" in content && (
@@ -310,7 +348,7 @@ export default function MediaDialog({ content, onClick }) {
                                 {key + 1}
                               </div>
                               <div className=" mr-3 w-[100px] sm:w-[120px] md:w-[180px] lg:w-[200px] inline-block my-auto">
-                                <img src={episode.image} className="" />
+                                <img src={episode.image} className="" alt={episode.name}/>
                               </div>
                               <div className=" mr-3 text-white">
                                 <p className="font-bold">{episode.name}</p>
@@ -327,7 +365,7 @@ export default function MediaDialog({ content, onClick }) {
                             <div className="flex flex-col mb-3 border-b border-gray-400 pb-2">
                               <div className="flex flex-row ">
                                 <div className="w-[100px] sm:w-[120px] md:w-[180px]">
-                                  <img src={episode.image} className="" />
+                                  <img src={episode.image} className="" alt={episode.name}/>
                                 </div>
                                 <div className="ml-3">
                                   <p className="text-white font-bold">
